@@ -60,11 +60,11 @@ class Frugt {
         //Her skal vi sørge for at frugten skydes afsted igen 
         let newY = random(50, 100); // random(480, 560)
         let newYSpeed = - sqrt((newY-15)*2*grav);
-        this.x = 30;
-        this.y = newY;
-        this.xspeed = random(4) ;
-        this.yspeed = 0 ;
-        this.tid = random(400);
+        this.x = random(50, 500);
+        this.y = 25;
+        this.xspeed = 0;
+        this.yspeed = 0;
+        this.tid = random(300);
     }
 
     clickNew = function() {
