@@ -9,8 +9,6 @@ let lime;
 let tomat;
 let frugter; // Array til alle frugter
 
-
-
 // Turbanen
 let turban;
 let turbanBillede;
@@ -26,6 +24,7 @@ let tabt = false;
 const col = [220,110,0]; // farven på gameOver teksten
 const grav = 0.1; // tyngdekraften
 
+// Kurv.js billedet (i stedet for firkant)
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
 }
@@ -144,12 +143,8 @@ function keyPressed() {
 }
 
 
-
-
-// lav en ny frugt
-// tiløj til frugt array
+// når musen holdes nede, skal nr. 0 i arrayet frugter afspille funktionen clickNew fra frugt.js
 function mouseClicked(event) {
-
     console.log(event);
 
     frugter[0].clickNew(); 
@@ -169,6 +164,7 @@ function mouseClicked(event) {
 
 /*
 OPGAVER
+
  Opgave 1 - Lige nu er der tre frugter i arrayet - lav programmet om, sådan at når man 
             klikker på skærmen med musen, så spawnes der en ny frugt, der hvor man klikker,
             med tilfældig x- og y-hastighed. For at lægge den ind i frugter-arrayet skal man
@@ -197,8 +193,5 @@ OPGAVER
 
  Opgave 8 - Lav programmet om så der kan være to turbaner på skærmen med to forskellige spillere.
             Den ene bruger piltasterne, som nu - den anden skal brge WASD til at styre turbanen med.
-
- 
-
 
 */
