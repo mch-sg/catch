@@ -21,6 +21,8 @@ let score = 0;
 let missed = 0;
 let liv = 100; // 8
 let spilIgang = true;   //flag
+let vundet = false;
+let tabt = false;
 const col = [220,110,0]; // farven på gameOver teksten
 const grav = 0.1; // tyngdekraften
 
@@ -63,6 +65,31 @@ function draw() {
         text("Game Over",width/2 + random(-5,5), height/2 + random(3 ));
         text("Score: "+score, width/2, height/2 + 50);
         
+    }
+
+    if(vundet) { 
+        spilIgang = false;
+        background(240);
+        fill(col);
+        textSize(46);
+        text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3 ));
+        text("Score: "+score, width/2, height/2 + 55);
+        textSize(20);
+        text("MISS: "+missed, width/2, height/2 + - 65);
+        winsong.play();
+        song.stop();
+    }
+
+    if(tabt) {
+        spilIgang = false;
+        background(247);
+        fill(col);
+        textSize(46);
+        text("Din taber!",width/2 + random(-5,5), height/2 + random(3 ));
+        text("Score: "+score, width/2, height/2 + 55);
+        textSize(20);
+        text("MISS: "+missed, width/2, height/2 + - 65);
+        song.stop();
     }
 }
 
