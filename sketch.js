@@ -25,7 +25,7 @@ const col = [220,110,0]; // farven på gameOver teksten
 const grav = 0.1; // tyngdekraften
 
 function preload() {
-    turbanBillede = loadImage('redstar.png');
+    turbanBillede = loadImage('assets/basket.png');
 }
 
 /* 
@@ -39,7 +39,7 @@ function setup() {  // kører kun en gang, når programmet startes
     //newspeed = yspeed;
     //x = rad;
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
-    turban = new Kurv(670, 100, 70, 50, 5);
+    turban = new Kurv(35, 500, 70, 50, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve)
     appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [220,110,0], 1); // 30, 550
     lime = new Frugt(random(50, 500), 25, 20, 30, 0, 0, [110,220,0], 2); // 30, 530
@@ -71,6 +71,7 @@ function display() {
     textSize(12);
     text("Score: "+ score, width-80, 30);
     text("Liv: " + liv, width-160, 30);
+    text("Miss: " + missed, width-240, 30);
     
     //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
     for (let i = 0; i < frugter.length; i++) {
