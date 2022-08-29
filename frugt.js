@@ -55,7 +55,7 @@ class Frugt {
             this.shootNew();
         }
 
-        if (score == 10) {
+        if (score >= 10) {
             vundet = true;
         } if (missed == 7) {
             tabt = true;
