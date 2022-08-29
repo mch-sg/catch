@@ -20,9 +20,9 @@ class Kurv {
     /* Tegner kurven. Her kan evt. sættes et billede ind i stedet
      */
     tegn = function() {
-        fill(this.col);
-        rect(this.x, this.y, this.bred, this.dyb);
-        //image(turbanBillede, this.x, this.y);
+     //   fill(this.col);
+      //  rect(this.x, this.y, this.bred, this.dyb);
+        image(turbanBillede, this.x, this.y);
     }
 
     flytKurv = function() {
