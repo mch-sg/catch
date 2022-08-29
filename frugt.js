@@ -54,6 +54,12 @@ class Frugt {
             }
             this.shootNew();
         }
+
+        if (score == 10) {
+            vundet = true;
+        } if (missed == 7) {
+            tabt = true;
+        }
     }
 
     shootNew = function() {
@@ -64,7 +70,7 @@ class Frugt {
         this.y = 25;
         this.xspeed = 0;
         this.yspeed = 0;
-        this.tid = random(50, 400);;
+        this.tid = random(50, 400);
     }
 
     clickNew = function() {
