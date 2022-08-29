@@ -41,9 +41,9 @@ function setup() {  // kører kun en gang, når programmet startes
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(670, 100, 70, 50, 5);
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve)
-    appelsin = new Frugt(30, 50, 40, 40, 4, -10, [220,110,0], 1); // 30, 550
-    lime = new Frugt(30, 50, 20, 30, 4, -10, [110,220,0], 2); // 30, 530
-    tomat = new Frugt(30, 50, 40, 30, 4, -10, [220,0,0], 3); // 30, 510
+    appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [220,110,0], 1); // 30, 550
+    lime = new Frugt(random(50, 500), 25, 20, 30, 0, 0, [110,220,0], 2); // 30, 530
+    tomat = new Frugt(random(50, 500), 25, 40, 30, 0, 0, [220,0,0], 3); // 30, 510
     frugter = [appelsin, lime, tomat];
 
 }
@@ -69,7 +69,7 @@ function draw() {
 function display() {
     fill(0);
     textSize(12);
-    text("Score: "+score, width-80, 30);
+    text("Score: "+ score, width-80, 30);
     text("Liv: " + liv, width-160, 30);
     
     //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
