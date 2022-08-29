@@ -46,9 +46,9 @@ class Frugt {
             this.yspeed += grav;
         }
         if (this.x > width || this.y > height) {
-            missed += this.smag;
+            missed += 1;
             // frugter[i].smag fjerner smagen fra liv (se: frugt.js class Frugt (smag))
-            liv -= this.smag;
+            liv -= 1;
             if (liv < 1) {
                 spilIgang = false;
             }
