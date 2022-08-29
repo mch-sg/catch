@@ -46,7 +46,7 @@ class Frugt {
             this.yspeed += grav;
         }
         if (this.x > width || this.y > height) {
-            missed += 1;
+            missed += this.smag;
             // frugter[i].smag fjerner smagen fra liv (se: frugt.js class Frugt (smag))
             liv -= this.smag;
             if (liv < 1) {
