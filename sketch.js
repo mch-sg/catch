@@ -8,6 +8,12 @@ let appelsin;
 let lime;
 let tomat;
 let frugter; // Array til alle frugter
+let appelsinType = {bredde: 10,
+                    hojde: 20,
+                    farve: [110,220,0],
+                    smag: 1,
+}
+
 
 // Turbanen
 let turban;
