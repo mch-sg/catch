@@ -14,7 +14,6 @@ let appelsinType = {bredde: 10,
                     smag: 1,
 }
 
-
 // Turbanen
 let turban;
 let turbanBillede;
@@ -43,6 +42,13 @@ function setup() {  // kører kun en gang, når programmet startes
 
     textAlign(CENTER, CENTER);
 
+    song = createAudio('assets/bg.wav');
+    song.autoplay(true);
+    song.volume(0.5);
+
+    winsong = createAudio('assets/winnie.wav');
+    winsong.volume(0.5);
+
     //newspeed = yspeed;
     //x = rad;
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
@@ -67,17 +73,18 @@ function draw() {
     else {  // så er Game Over det der skal vises
         fill(col);
         textSize(46);
-        text("Game Over",width/2 + random(-5,5), height/2 + random(3 ));
+        text("Game Over",width/2 + random(-5,5), height/2 + random(3));
         text("Score: "+score, width/2, height/2 + 50);
         
     }
 
+    // Hvis spilleren har vundet, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
     if(vundet) { 
         spilIgang = false;
         background(240);
         fill(col);
         textSize(46);
-        text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3 ));
+        text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3));
         text("Score: "+score, width/2, height/2 + 55);
         textSize(20);
         text("MISS: "+missed, width/2, height/2 + - 65);
@@ -85,12 +92,14 @@ function draw() {
         song.stop();
     }
 
+
+    // Hvis spilleren har tabt, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
     if(tabt) {
         spilIgang = false;
         background(247);
         fill(col);
         textSize(46);
-        text("Din taber!",width/2 + random(-5,5), height/2 + random(3 ));
+        text("Din taber!",width/2 + random(-5,5), height/2 + random(3));
         text("Score: "+score, width/2, height/2 + 55);
         textSize(20);
         text("MISS: "+missed, width/2, height/2 + - 65);
@@ -98,6 +107,9 @@ function draw() {
     }
 }
 
+
+
+// Display følgende tekst / frugter 
 function display() {
     fill(0);
     textSize(12);
@@ -132,7 +144,7 @@ function checkScore() {
     for (let i = 0; i < frugter.length; i++) {
         
         if (frugter[i].yspeed > 0) {
-            console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i], turban.x, turban.y))
+            console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
             if (turban.grebet(frugter[i])) {
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
