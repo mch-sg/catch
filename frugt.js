@@ -15,11 +15,7 @@ class Frugt {
         this.bred = bredde; 
         this.dyb = dybde;
         this.xspeed = xspeed;
-        if (yspeed < - sqrt((y-15)*2*grav)) {
-            this.yspeed = - sqrt((y-15)*2*grav);
-        } else {
-            this.yspeed = yspeed;
-        }
+        if (yspeed < - sqrt((y-15)*2*grav)) { this.yspeed = - sqrt((y-15)*2*grav); } else { this.yspeed = yspeed;} // Opnår højden
         this.col = farve;
         this.tid = random(400); //tidsforsinkelsen før frugten vises og afskydes
     }   

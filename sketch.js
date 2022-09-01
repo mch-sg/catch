@@ -14,9 +14,35 @@ let appelsinType = {bredde: 10,
                     smag: 1,
 }
 
+let retry = function() {
+//    window.location.reload(true);
+    spilIgang = true;
+};
+
+
 // Turbanen
 let turban;
 let turbanBillede;
+
+
+// Side quests array (forskellige quests)
+let quests = ["Grib 3 appelsiner i streg. ", "Grib 3 limes i streg. ", "Grib 3 tomater i streg. ", "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
+// Quest resultatet
+let questR = 0; 
+// questNum (sammen med questNum.json) er til at holde styr på hvor mange frugter der skal gribes ift. den quest, man får.
+let questNum = 
+"quests[0]:" [   {  "vaerdi":"3","frugt":"appelsin" },
+{  "quests[1]:":"3"  }  ]; 
+
+let questFrugt = 
+[   {  "quests[0]:":"appelsin", },
+{  "quests[1]:":"lime"  }  ]; 
+
+// Variablen der giver spilleren en random quest fra quests arrayet
+const tilfaeldig = Math.floor(Math.random() * quests.length);
+
+console.log(quests[tilfaeldig]);
+
 
 // Øvrige
 let tid = 150;
@@ -34,6 +60,7 @@ function preload() {
     turbanBillede = loadImage('assets/basket.png');
 }
 
+
 /* 
  * 
  */
@@ -42,12 +69,35 @@ function setup() {  // kører kun en gang, når programmet startes
 
     textAlign(CENTER, CENTER);
 
-    song = createAudio('assets/bg.wav');
-    song.autoplay(true);
-    song.volume(0.5);
 
-    winsong = createAudio('assets/winnie.wav');
-    winsong.volume(0.5);
+    /*
+    LYD LAVES FREMADRETTET
+    */
+
+    // Her laves lyden til spillet. Variablen song er baggrundsmusikken.
+    song = createAudio('assets/intro-music.wav'); // assets/bg.wav
+    song.autoplay(true);
+    song.volume(0.3);
+
+    // Her laves vinderlyden.
+    winsong = createAudio('assets/i-win.wav'); // assets/winnie.wav
+    winsong.volume(0.3);
+
+    // Her laves taberlyden.
+    losesong = createAudio('assets/i-lose.wav');
+    losesong.volume(0.3);
+
+    // Her laves lyden, når turbaen griber en frugt
+    grib = createAudio('assets/i-catch.wav');
+    grib.volume(0.3);
+
+    // Her laves lyden, når turbaen ikke griber en frugt
+    miss = createAudio('assets/i-miss.wav');
+    miss.volume(0.3); 
+
+    /*
+    SPIL LAVES FREMADRETTET
+    */
 
     //newspeed = yspeed;
     //x = rad;
@@ -88,10 +138,14 @@ function draw() {
         text("Score: "+score, width/2, height/2 + 55);
         textSize(20);
         text("MISS: "+missed, width/2, height/2 + - 65);
+   //     text("Retry "+ retry(), width/2, height/2 + 85);
+
+        // window.location.reload(true)
+
+        // Her skal vi sørge for at lyden afspilles
         winsong.play();
         song.stop();
     }
-
 
     // Hvis spilleren har tabt, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
     if(tabt) {
@@ -99,10 +153,11 @@ function draw() {
         background(247);
         fill(col);
         textSize(46);
-        text("Din taber!",width/2 + random(-5,5), height/2 + random(3));
+        text("Din taber!",width/2 + random(-5,5), height/2 + random(3)); 
         text("Score: "+score, width/2, height/2 + 55);
         textSize(20);
         text("MISS: "+missed, width/2, height/2 + - 65);
+        losesong.play();
         song.stop();
     }
 }
@@ -114,8 +169,11 @@ function display() {
     fill(0);
     textSize(12);
     text("Score: "+ score, width-80, 30);
-    text("Liv: " + liv, width-160, 30);
-    text("Miss: " + missed, width-240, 30);
+    text("Liv: " + liv, width-160, 30); 
+    text("Miss: " + missed, width-240, 30); 
+    // Her vises mine quests i spillet
+    text("Quest: " + quests[tilfaeldig] + questR + "/3", width-640, 30); // + questR + "/" + questNum
+
     
     //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
     for (let i = 0; i < frugter.length; i++) {
@@ -123,7 +181,7 @@ function display() {
     }    
 
     // Her vises turbanen - foreløbig blot en firkant
-    turban.tegn();
+    turban.tegn(); 
 }
 
 function flytTurban() {
@@ -148,7 +206,13 @@ function checkScore() {
             if (turban.grebet(frugter[i])) {
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
+                // Her spilles lyden, når turbaen griber en frugt
+                grib.play();
+                // Her skydes en ny frugt afsted
                 frugter[i].shootNew(); 
+
+                // quest resultat bliver højere
+                questR += 1; 
             }
         }
     }
@@ -176,7 +240,34 @@ function mouseClicked(event) {
     }  */
   } 
 
-  mouseClicked();
+mouseClicked();
+
+
+function displayQWin() {
+    fill(0);
+    textSize(12);
+    text("Score: "+ score, width-80, 30);
+    text("Liv: " + liv, width-160, 30); 
+    text("Miss: " + missed, width-240, 30); 
+    
+    //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
+    for (let i = 0; i < frugter.length; i++) {
+        frugter[i].tegn();
+    }    
+
+    // Her vises turbanen - foreløbig blot en firkant
+    turban.tegn(); 
+}
+
+/* 
+if(questR === questNum) {
+    score += 20;
+    questR = 0;
+    // kør funktion ?
+    // "Quests" bliver fjernet fra display
+    displayQWin();
+}
+*/
 
 
 

@@ -45,4 +45,12 @@ In addition, the visuals must create an experience so that you experience someth
 
 I would also like to add 'bombs', or at least some kind of object that takes a life away from the player (or maybe kills the player altogether). Here you can also make the taste variable itself better in terms of showing which ones give specific points (perhaps in the form of color). 
 
+<br /><br />
 
+## How it works
+[...]
+
+<br /><br />
+
+## Credits
+- https://freesound.org/people/EVRetro/
