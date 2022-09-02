@@ -26,22 +26,45 @@ let turbanBillede;
 
 
 // Side quests array (forskellige quests)
-let quests = ["Grib 3 appelsiner i streg. ", "Grib 3 limes i streg. ", "Grib 3 tomater i streg. ", "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
+let quest = ["Grib 3 appelsiner i streg. ", "Grib 3 limes i streg. ", "Grib 3 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
 // Quest resultatet
 let questR = 0; 
 // questNum (sammen med questNum.json) er til at holde styr på hvor mange frugter der skal gribes ift. den quest, man får.
-let questNum = 
-"quests[0]:" [   {  "vaerdi":"3","frugt":"appelsin" },
-{  "quests[1]:":"3"  }  ]; 
 
-let questFrugt = 
-[   {  "quests[0]:":"appelsin", },
-{  "quests[1]:":"lime"  }  ]; 
+let quests = [
+    {fruit: "appelsin", catch: 3},
+    {fruit: "lime", catch: 3},
+    {fruit: "tomater", catch: 3},
+
+//    {fruit: "appelsin", catch: 5},
+//    {fruit: "lime", catch: 5},
+//    {fruit: "tomater", catch: 5},
+  ];
+  
+// Så kan du f.eks sige dette
+console.log(quests[0].fruit, quests[0].catch);
+
 
 // Variablen der giver spilleren en random quest fra quests arrayet
-const tilfaeldig = Math.floor(Math.random() * quests.length);
+let tilfaeldig = Math.floor(Math.random() * quest.length); // const
 
-console.log(quests[tilfaeldig]);
+// let tilfaeldig2 = Math.floor(Math.random() * quest.length);
+
+const tilfaeldig2 = () => {
+    return Math.floor(Math.random() * quest.length);
+}
+
+
+console.log(quest[tilfaeldig]);
+console.log(tilfaeldig);
+console.log(tilfaeldig2());
+
+function nyRandom() {
+    tilfaeldig2();
+    console.log(tilfaeldig2);
+    tilfaeldig = tilfaeldig2();
+}
+
 
 
 // Øvrige
@@ -119,6 +142,14 @@ function draw() {
         flytTurban();  // flyt turbanen
         checkScore(); // tjek om hver frugt er blevet grebet
         display(); // vis alle frugterne og turbanen
+
+ /*       if(questR != quests[tilfaeldig].catch) {
+            display();
+        } */
+
+/*        if(questR === quests[tilfaeldig].catch) {
+            displayQWin();
+        }  */
     }
     else {  // så er Game Over det der skal vises
         fill(col);
@@ -172,7 +203,9 @@ function display() {
     text("Liv: " + liv, width-160, 30); 
     text("Miss: " + missed, width-240, 30); 
     // Her vises mine quests i spillet
-    text("Quest: " + quests[tilfaeldig] + questR + "/3", width-640, 30); // + questR + "/" + questNum
+    text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch, width-640, 30);
+//    text("Quest: " + "Grib " + quests[tilfaeldig].catch + " " + quests[tilfaeldig].fruit + " i streg. " +  + questR + "/" + quests[tilfaeldig].catch, width-640, 30);
+    //text("Quest: " + quests[tilfaeldig] + questR + "/3", width-640, 30); // + questR + "/" + questNum
 
     
     //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
@@ -183,6 +216,24 @@ function display() {
     // Her vises turbanen - foreløbig blot en firkant
     turban.tegn(); 
 }
+
+// Display alt andet end quests // når questen er færdig
+function displayQWin() {
+    fill(0);
+    textSize(12);
+    text("Score: "+ score, width-80, 30);
+    text("Liv: " + liv, width-160, 30); 
+    text("Miss: " + missed, width-240, 30); 
+    
+    //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
+    for (let i = 0; i < frugter.length; i++) {
+        frugter[i].tegn();
+    }    
+
+    // Her vises turbanen - foreløbig blot en firkant
+    turban.tegn(); 
+}
+
 
 function flytTurban() {
     // Denne funktion kalder bare videre til Kurv-klassen
@@ -202,8 +253,34 @@ function checkScore() {
     for (let i = 0; i < frugter.length; i++) {
         
         if (frugter[i].yspeed > 0) {
-            console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
-            if (turban.grebet(frugter[i])) {
+
+            // frugten defineret ved quests er den samme som frugten, der kastes
+            quests[tilfaeldig].fruit = frugter[tilfaeldig];
+
+            // Hvis frugten, der grebes, er den frugt, der er i questen, så skal quest resultatet gå op
+            if (turban.grebet(frugter[tilfaeldig])) { 
+                // quest resultat bliver højere
+                questR += 1; 
+            }
+
+            // Hvis man griber en anden frugt, end questen tillader, skal den genstarte quest resultatet
+            if (turban.grebet(frugter[i]) != turban.grebet(frugter[tilfaeldig])) {
+                questR = 0; 
+            }
+
+            // Hvis quest resultatet er det samme som antal gribet, skal man få belønningen og dernæst resette
+            if(questR === quests[tilfaeldig].catch) {
+                // Belønning gives til scoren
+                score += 10;
+                // quest resultat genstartes til ny quest
+                questR = 0;
+                // når quest er klaret, skal en ny quest afspilles. Herved function nyRandom.
+                nyRandom();
+
+            }
+
+         //   console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
+            if (turban.grebet(frugter[i])) { // (turban.grebet(frugter[i]))
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
                 // Her spilles lyden, når turbaen griber en frugt
@@ -212,10 +289,15 @@ function checkScore() {
                 frugter[i].shootNew(); 
 
                 // quest resultat bliver højere
-                questR += 1; 
+              //  questR += 1; 
+
             }
         }
+        
     }
+
+    quests[tilfaeldig].fruit = frugter[tilfaeldig];
+    
 }
 
 
@@ -226,41 +308,16 @@ function keyPressed() {
 
 
 // når musen holdes nede, skal nr. 0 i arrayet frugter afspille funktionen clickNew fra frugt.js
-function mouseClicked(event) {
-    console.log(event);
+function mouseClicked() {
 
-    frugter[0].clickNew(); 
+    frugter[tilfaeldig].clickNew(); 
     return;
-
-    /*
-    for (let i = 0; i < frugter.length; i++) {
-                frugter[2].clickNew(); 
-                return;
-
-    }  */
   } 
 
 mouseClicked();
 
-
-function displayQWin() {
-    fill(0);
-    textSize(12);
-    text("Score: "+ score, width-80, 30);
-    text("Liv: " + liv, width-160, 30); 
-    text("Miss: " + missed, width-240, 30); 
-    
-    //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
-    for (let i = 0; i < frugter.length; i++) {
-        frugter[i].tegn();
-    }    
-
-    // Her vises turbanen - foreløbig blot en firkant
-    turban.tegn(); 
-}
-
 /* 
-if(questR === questNum) {
+if(questR === quests[tilfaeldig].catch) {
     score += 20;
     questR = 0;
     // kør funktion ?
