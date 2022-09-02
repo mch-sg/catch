@@ -8,8 +8,9 @@ class Frugt {
      * ud fra dem. Værdierne huskes som hørende til netop 
      * dette objekt ved hjælp af nøgleordet this
      */
-    constructor(x, y, bredde, dybde, xspeed, yspeed, farve, smag) {
-        this.smag = smag;  // hvor mange point skal denne frugt give? Fast værdi: 1
+    constructor(x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn) {
+        this.navn = navn
+        this.smag = smag;  // hvor mange point frugten skal give
         this.x = x;     // x-position
         this.y = y;     // y-position
         this.bred = bredde; 
@@ -41,6 +42,16 @@ class Frugt {
             this.y += this.yspeed;
             this.yspeed += grav;
         }
+
+        // Hvis man misser frugten, man skal gribe i questen, bliver quest resultatet genstartet
+        if (frugter[tilfaeldig].x > width || frugter[tilfaeldig].y > height) {
+            questR = 0; 
+            // Spil lyd
+            miss.play();
+            // Jeg logger her hvilken frugt, der er tabt
+            console.log("frugten " + frugter[tilfaeldig].navn + " er tabt");
+        }
+
         if (this.x > width || this.y > height) {
             missed += 1;
             // frugter[i].smag fjerner smagen fra liv (se: frugt.js class Frugt (smag))
@@ -50,6 +61,7 @@ class Frugt {
             }
             this.shootNew();
         }
+
 
         if (score >= 100) {
             vundet = true;

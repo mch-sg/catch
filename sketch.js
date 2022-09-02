@@ -7,17 +7,17 @@ Først laver vi nogle variable til at lave nogle frugter:
 let appelsin;
 let lime;
 let tomat;
-let frugter; // Array til alle frugter
-let appelsinType = {bredde: 10,
-                    hojde: 20,
-                    farve: [110,220,0],
-                    smag: 1,
-}
+let frugter; // Array til alle frugterne
 
 let retry = function() {
 //    window.location.reload(true);
     spilIgang = true;
 };
+
+// Random p5 function, mellem 2 værdier for quests catch random
+function mellem(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 // Turbanen
@@ -26,44 +26,39 @@ let turbanBillede;
 
 
 // Side quests array (forskellige quests)
-let quest = ["Grib 3 appelsiner i streg. ", "Grib 3 limes i streg. ", "Grib 3 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
+let quest = [" appelsiner i streg. ", " limes i streg. ", " tomater i streg. ",];
+// let quest = ["Grib 3 appelsiner i streg. ", "Grib 6 limes i streg. ", "Grib 9 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
 // Quest resultatet
 let questR = 0; 
-// questNum (sammen med questNum.json) er til at holde styr på hvor mange frugter der skal gribes ift. den quest, man får.
-
+// qquests definerer de forskellige værdier (hvor mange man skal gribe) og (hvilken frugt) sammen med det specifikke array quest
 let quests = [
-    {fruit: "appelsin", catch: 3},
-    {fruit: "lime", catch: 3},
-    {fruit: "tomater", catch: 3},
-
-//    {fruit: "appelsin", catch: 5},
-//    {fruit: "lime", catch: 5},
-//    {fruit: "tomater", catch: 5},
-  ];
-  
-// Så kan du f.eks sige dette
-console.log(quests[0].fruit, quests[0].catch);
-
+    {fruit: "appelsin", catch: mellem(2,5), Pts: 10}, // catch: 3
+    {fruit: "lime", catch: mellem(3,6), Pts: 20}, // catch: 6
+    {fruit: "tomat", catch: mellem(6,9), Pts: 30}, // catch: 9
+];
 
 // Variablen der giver spilleren en random quest fra quests arrayet
-let tilfaeldig = Math.floor(Math.random() * quest.length); // const
+let tilfaeldig = Math.floor(Math.random() * quest.length); 
 
-// let tilfaeldig2 = Math.floor(Math.random() * quest.length);
-
-const tilfaeldig2 = () => {
+// En funktion, der laver en random quest på kaldet nyRandom()
+function tilfaeldig2() { // const tilfaeldig2 = () => {
     return Math.floor(Math.random() * quest.length);
 }
 
+// Funktion der laver en ny random quest, når spilleren har gjort den forrige
+function nyRandom() {
+    tilfaeldig2();
+    console.log(tilfaeldig2());
+    tilfaeldig = tilfaeldig2();
+}
 
+// Tjekker, om mine værdier passer med de værdier, der er i quests arrayet
 console.log(quest[tilfaeldig]);
 console.log(tilfaeldig);
 console.log(tilfaeldig2());
 
-function nyRandom() {
-    tilfaeldig2();
-    console.log(tilfaeldig2);
-    tilfaeldig = tilfaeldig2();
-}
+console.log("q l: " + quest.length);
+console.log("qs l: " + quests.length);
 
 
 
@@ -71,7 +66,7 @@ function nyRandom() {
 let tid = 150;
 let score = 0;
 let missed = 0;
-let liv = 100; // 8
+let liv = 50; // 8
 let spilIgang = true;   //flag
 let vundet = false;
 let tabt = false;
@@ -125,16 +120,16 @@ function setup() {  // kører kun en gang, når programmet startes
     //newspeed = yspeed;
     //x = rad;
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
-    turban = new Kurv(35, 500, 70, 50, 5); // 670, 100
+    turban = new Kurv(50, 425, 70, 50, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve)
-    appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [220,110,0], 1); // 30, 550
-    lime = new Frugt(random(50, 500), 25, 20, 30, 0, 0, [110,220,0], 2); // 30, 530
-    tomat = new Frugt(random(50, 500), 25, 40, 30, 0, 0, [220,0,0], 3); // 30, 510
+    appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [220,110,0], 1, "appelsin"); // 30, 550
+    lime = new Frugt(random(50, 500), 25, 20, 30, 0, 0, [110,220,0], 2, "lime"); // 30, 530
+    tomat = new Frugt(random(50, 500), 25, 40, 30, 0, 0, [220,0,0], 3, "tomat"); // 30, 510
     frugter = [appelsin, lime, tomat];
 
 }
 
-function draw() {
+function draw() { 
     background(240);
     
     if (spilIgang) {
@@ -194,7 +189,6 @@ function draw() {
 }
 
 
-
 // Display følgende tekst / frugter 
 function display() {
     fill(0);
@@ -203,10 +197,9 @@ function display() {
     text("Liv: " + liv, width-160, 30); 
     text("Miss: " + missed, width-240, 30); 
     // Her vises mine quests i spillet
-    text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch, width-640, 30);
-//    text("Quest: " + "Grib " + quests[tilfaeldig].catch + " " + quests[tilfaeldig].fruit + " i streg. " +  + questR + "/" + quests[tilfaeldig].catch, width-640, 30);
-    //text("Quest: " + quests[tilfaeldig] + questR + "/3", width-640, 30); // + questR + "/" + questNum
+    text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-160, 550); // width-640, 30 // width/5, 30
 
+// text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
     
     //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
     for (let i = 0; i < frugter.length; i++) {
@@ -217,22 +210,6 @@ function display() {
     turban.tegn(); 
 }
 
-// Display alt andet end quests // når questen er færdig
-function displayQWin() {
-    fill(0);
-    textSize(12);
-    text("Score: "+ score, width-80, 30);
-    text("Liv: " + liv, width-160, 30); 
-    text("Miss: " + missed, width-240, 30); 
-    
-    //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
-    for (let i = 0; i < frugter.length; i++) {
-        frugter[i].tegn();
-    }    
-
-    // Her vises turbanen - foreløbig blot en firkant
-    turban.tegn(); 
-}
 
 
 function flytTurban() {
@@ -257,21 +234,36 @@ function checkScore() {
             // frugten defineret ved quests er den samme som frugten, der kastes
             quests[tilfaeldig].fruit = frugter[tilfaeldig];
 
-            // Hvis frugten, der grebes, er den frugt, der er i questen, så skal quest resultatet gå op
-            if (turban.grebet(frugter[tilfaeldig])) { 
-                // quest resultat bliver højere
-                questR += 1; 
-            }
 
-            // Hvis man griber en anden frugt, end questen tillader, skal den genstarte quest resultatet
-            if (turban.grebet(frugter[i]) != turban.grebet(frugter[tilfaeldig])) {
-                questR = 0; 
+            // Tjek frugter i og tilfaeldig
+            if(frugter[i] === frugter[tilfaeldig]) {
+                console.log("frugter i = frugter tilfaeldig");
+            } 
+
+            // Hvis den har grebet en frugt, skal den tjekke følgende
+            if (turban.grebet(frugter[i])) {
+                // Hvis frugten, der grebes, er den frugt, der er i questen, så skal quest resultatet gå op
+                if (turban.grebet(quests[tilfaeldig].fruit)) {  // turban.grebet(frugter[tilfaeldig])
+                    // quest resultat bliver højere
+                    questR++; 
+                    // Jeg logger her, hvilken frugt der er blevet grebet, og hvilken frugt der er i questen
+                    console.log("frugt grebet: " + frugter[i].navn);
+                    console.log("frugt questen: " + frugter[tilfaeldig].navn);
+                } else {
+                    // Hvis frugten ikke er den samme som i questen, så skal quest resultatet genstartes
+                    questR = 0; 
+                    // Jeg logger her hvilken frugt, der er grebet (miss1), og hvilken frugt, der er i questen (miss2)
+                    console.log("miss grebet: " + frugter[i].navn);
+                    console.log("miss questen: " + frugter[tilfaeldig].navn )
+                }
             }
 
             // Hvis quest resultatet er det samme som antal gribet, skal man få belønningen og dernæst resette
             if(questR === quests[tilfaeldig].catch) {
                 // Belønning gives til scoren
-                score += 10;
+                score += quests[tilfaeldig].Pts;
+                // Spil lyd
+                winsong.play();
                 // quest resultat genstartes til ny quest
                 questR = 0;
                 // når quest er klaret, skal en ny quest afspilles. Herved function nyRandom.
@@ -279,7 +271,7 @@ function checkScore() {
 
             }
 
-         //   console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
+            //   console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
             if (turban.grebet(frugter[i])) { // (turban.grebet(frugter[i]))
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
@@ -287,18 +279,41 @@ function checkScore() {
                 grib.play();
                 // Her skydes en ny frugt afsted
                 frugter[i].shootNew(); 
-
-                // quest resultat bliver højere
-              //  questR += 1; 
-
             }
         }
         
     }
 
-    quests[tilfaeldig].fruit = frugter[tilfaeldig];
-    
 }
+
+
+/*
+Definerer point ud fra hvor mange frugter man skal gribe
+*/
+
+// Appelsiner
+if(quests[0].catch >= 4) { 
+    quests[0].Pts = 10;
+} else if(quests[0].catch <= 2) {
+    quests[0].Pts = 2;
+} else {
+    quests[0].Pts = 5;
+}
+
+// Limes
+if(quests[1].catch >= 5) { 
+    quests[1].Pts = 20;
+} else {
+    quests[1].Pts = 15;
+}
+
+// Tomater
+if(quests[2].catch >= 8) { 
+    quests[2].Pts = 30;
+} else {
+    quests[2].Pts = 20;
+}
+
 
 
 function keyPressed() {
@@ -312,19 +327,11 @@ function mouseClicked() {
 
     frugter[tilfaeldig].clickNew(); 
     return;
-  } 
+  }  
 
-mouseClicked();
+//mouseClicked();
 
-/* 
-if(questR === quests[tilfaeldig].catch) {
-    score += 20;
-    questR = 0;
-    // kør funktion ?
-    // "Quests" bliver fjernet fra display
-    displayQWin();
-}
-*/
+
 
 
 
