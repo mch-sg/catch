@@ -19,7 +19,7 @@ class Frugt {
         this.xspeed = xspeed;
         if (yspeed < - sqrt((y-15)*2*grav)) { this.yspeed = - sqrt((y-15)*2*grav); } else { this.yspeed = yspeed;} // Opnår højden
         this.col = farve;
-        this.tid = random(400); //tidsforsinkelsen før frugten vises og afskydes
+        this.tid = random(50, 300); //tidsforsinkelsen før frugten vises og afskydes
     }   
     
     /* Tegner frugten. Her kan evt. sættes et billede ind i stedet
@@ -81,7 +81,7 @@ class Frugt {
         this.y = 25;
         this.xspeed = 0;
         this.yspeed = 0;
-        this.tid = random(20, 300); //random(50, 400)
+        this.tid = random(35, 300); //random(50, 400)
     }
 
     clickNew = function() {
