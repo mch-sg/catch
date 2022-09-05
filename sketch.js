@@ -24,6 +24,7 @@ function mellem(min, max) {
 // Turbanen
 let turban;
 let turbanBillede;
+let logIco;
 
 
 // Side quests array (forskellige quests)
@@ -80,6 +81,8 @@ let menu = true;
 // Kurv.js billedet (i stedet for firkant)
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
+    logIco = loadImage('assets/favicon.png');
+    startImg = loadImage('assets/11.png');
 }
 
 
@@ -146,16 +149,20 @@ function draw() {
         display(); // vis alle frugterne og turbanen
 
     }
+    
+//    let bag = image(startImg,0,0, width, height);
 
     // Menuen laves inden spillet er i gang
     if(menu) {
         background(245);
+ //       background(bag);
         fill(col);
         textSize(65); textFont('Arial');
         text("Appelsiner i haven",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(25);
         fill([252, 157, 101])
         text("Tryk enter for at starte",width/2, height/2 + 100);
+    //    image(logIco, width/2 - 35, height/2 - 200, 75, 75);
 
     }  
 
