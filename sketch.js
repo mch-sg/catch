@@ -69,26 +69,18 @@ let tid = 150;
 let score = 0;
 let missed = 0;
 let liv = 50; // 8
-let spilIgang = true;   //flag
+let spilIgang = false;   //flag
 let vundet = false;
 let tabt = false;
 const col = [255,99,71]; // farven på gameOver teksten
 const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 
-let menu = false;
+let menu = true;
 
 // Kurv.js billedet (i stedet for firkant)
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
 }
-
-/*
-if(tabt === true) {
-function mousePressed() {
-    col = [0,0,0];
-}
-}
-*/
 
 
 /* 
@@ -100,13 +92,13 @@ function setup() {  // kører kun en gang, når programmet startes
     textAlign(CENTER, CENTER);
 
 
+
     /*
     LYD LAVES FREMADRETTET
     */
 
     // Her laves lyden til spillet. Variablen song er baggrundsmusikken.
     song = createAudio('assets/intro-music.wav'); // assets/bg.wav
-    song.play();
     song.volume(0.5); 
 
     // Her laves vinderlyden.
@@ -142,9 +134,11 @@ function setup() {  // kører kun en gang, når programmet startes
 
 }
 
+
 function draw() { 
     background(245); // 240 // 236, 242, 235 // 243, 246, 242
     
+
     if (spilIgang) {
         flytFrugter(); // flyt alle frugterne
         flytTurban();  // flyt turbanen
@@ -153,71 +147,72 @@ function draw() {
 
     }
 
-    // Hvis spilleren har vundet, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
-    if(vundet) { 
-  /*      spilIgang = false;
-        background(240);
-        fill(col);
-        textSize(46);
-        text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3));
-        text("Score: "+score, width/2, height/2 + 55);
-        textSize(20);
-        text("MISS: "+missed, width/2, height/2 + - 65); */
-
-        spilIgang = false;
+    // Menuen laves inden spillet er i gang
+    if(menu) {
         background(245);
         fill(col);
-        textSize(65);
-        textFont('Arial');
-        textStyle(NORMAL);
-        text("Du har vundet!",width/2 + random(-1,1), height/2 + random(3)); 
+        textSize(65); textFont('Arial');
+        text("Appelsiner i haven",width/2 + random(-0.5,0.5), height/2 + random(1)); 
+        textSize(25);
+        fill([252, 157, 101])
+        text("Tryk enter for at starte",width/2, height/2 + 100);
+
+    }  
+
+    // Hvis spilleren har vundet, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
+    if(vundet) { 
+        spilIgang = false;
+        background(245); fill(col);
+        textSize(65); textFont('Arial');
+        text("Du har vundet!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(18);
-        textFont('Arial');
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
         textSize(30);
-        textFont('Arial');
-        text("Prøv igen",width/2, height/2 + 80);
+        text("Prøv igen (enter)",width/2, height/2 + 80);
 
         // Her skal vi sørge for at lyden afspilles
         winsong.play();
         song.stop();
-    }
+    } 
 
     // Hvis spilleren har tabt, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
     if(tabt) {
         spilIgang = false;
-        background(245);
-        fill(col);
-        textSize(65);
-        textFont('Arial');
-        textStyle(NORMAL);
-        text("Din taber!",width/2 + random(-1,1), height/2 + random(3)); 
+        background(245); fill(col);
+        textSize(65); textFont('Arial');
+        text("Din taber!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(18);
-        textFont('Arial');
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
         textSize(30);
-        textFont('Arial');
-        text("Prøv igen",width/2, height/2 + 80);
+        text("Prøv igen (enter)",width/2, height/2 + 80);
 
         losesong.play();
         song.stop();
     }
 
+}
 
-    if(menu) {
-        spilIgang = false;
-        background(245);
-        fill(col);
-        textSize(65);
-        textFont('Arial');
-        text("Appelsinspillet",width/2 + random(-1,1), height/2 + random(3)); 
-        textSize(25);
-        fill([252, 157, 101])
-        textFont('Arial');
-        text("Tryk for at starte",width/2, height/2 + 100);
 
-        losesong.play();
-        song.stop();
+// Funktionen, der definerer at man skal trykke enter for at starte spillet, og der genstarter spillet til de normale værdier
+function keyPressed() {
+    if (spilIgang == false) {
+        if (keyCode === 13) { // 87 = W // 32 = SPACE // 13 = ENTER
+            clear();
+            vundet = false;
+            tabt = false;
+            menu = false;
+            losesong.stop();
+            winsong.stop();
+
+            tid = 150;
+            score = 0;
+            missed = 0;
+            liv = 50; 
+        
+            spilIgang = true;
+            song.play();
+
+        }
     }
 }
 
@@ -320,8 +315,6 @@ function checkScore() {
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
                 liv += frugter[i].nLiv;
-                // Her spilles lyden, når turbaen griber en frugt
-                grib.play();
 
                 // Her skydes en ny frugt afsted
                 frugter[i].shootNew(); 
@@ -367,12 +360,6 @@ if(quests[3].catch >= 4) {
     quests[3].Liv = 5;
 }
 
-
-
-function keyPressed() {
-    // Funktionen gør ingenting lige nu
-    return false;  // Forebygger evt. browser default behaviour
-}
 
 
 // når musen holdes nede, skal nr. 0 i arrayet frugter afspille funktionen clickNew fra frugt.js

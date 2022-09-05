@@ -62,6 +62,8 @@ class Kurv {
      */
     grebet = function(frugt) {
         if ((frugt.y < this.y+7 && frugt.y > this.y-7) && frugt.x > this.x/*+frugt.bredde/2*/ && frugt.x < this.x+this.bred/*-frugt.bredde/2*/) {
+            // Her spilles lyden, når turbaen griber en frugt
+            grib.play();
             return true;
         }
         else {
