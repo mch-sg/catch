@@ -75,6 +75,8 @@ let tabt = false;
 const col = [255,99,71]; // farven på gameOver teksten
 const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 
+let menu = false;
+
 // Kurv.js billedet (i stedet for firkant)
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
@@ -168,7 +170,7 @@ function draw() {
         textSize(65);
         textFont('Arial');
         textStyle(NORMAL);
-        text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3)); 
+        text("Du har vundet!",width/2 + random(-1,1), height/2 + random(3)); 
         textSize(18);
         textFont('Arial');
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
@@ -189,13 +191,30 @@ function draw() {
         textSize(65);
         textFont('Arial');
         textStyle(NORMAL);
-        text("Din taber!",width/2 + random(-5,5), height/2 + random(3)); 
+        text("Din taber!",width/2 + random(-1,1), height/2 + random(3)); 
         textSize(18);
         textFont('Arial');
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
         textSize(30);
         textFont('Arial');
         text("Prøv igen",width/2, height/2 + 80);
+
+        losesong.play();
+        song.stop();
+    }
+
+
+    if(menu) {
+        spilIgang = false;
+        background(245);
+        fill(col);
+        textSize(65);
+        textFont('Arial');
+        text("Appelsinspillet",width/2 + random(-1,1), height/2 + random(3)); 
+        textSize(25);
+        fill([252, 157, 101])
+        textFont('Arial');
+        text("Tryk for at starte",width/2, height/2 + 100);
 
         losesong.play();
         song.stop();
