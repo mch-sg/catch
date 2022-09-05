@@ -85,7 +85,7 @@ function preload() {
  * 
  */
 function setup() {  // kører kun en gang, når programmet startes
-    createCanvas(750, 600);
+    createCanvas(850, 650); // 750, 600
 
     textAlign(CENTER, CENTER);
 
@@ -97,7 +97,7 @@ function setup() {  // kører kun en gang, når programmet startes
     // Her laves lyden til spillet. Variablen song er baggrundsmusikken.
     song = createAudio('assets/intro-music.wav'); // assets/bg.wav
     song.autoplay(true);
-    song.volume(0.3);
+    song.volume(0.5); 
 
     // Her laves vinderlyden.
     winsong = createAudio('assets/i-win.wav'); // assets/winnie.wav
@@ -133,7 +133,7 @@ function setup() {  // kører kun en gang, når programmet startes
 }
 
 function draw() { 
-    background(240);
+    background(245); // 240 // 236, 242, 235 // 243, 246, 242
     
     if (spilIgang) {
         flytFrugter(); // flyt alle frugterne
@@ -194,10 +194,10 @@ function display() {
     text("Miss: " + missed, width-240, 30); 
     // Her vises mine quests i spillet
     if (quests[tilfaeldig].Pts >= 1) {
-    text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-160, 550); // width-640, 30 // width/5, 30
+    text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-160, 600); // width-160, 550
     }
     if (quests[tilfaeldig].Liv >= 1) {
-        text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Liv + " liv)", width-160, 550); // width-640, 30 // width/5, 30
+        text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Liv + " liv)", width-160, 600); // width-640, 30 // width/5, 30
     }
     // text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
     
@@ -274,7 +274,7 @@ function checkScore() {
                 // quest resultat genstartes til ny quest
                 questR = 0;
                 // når quest er klaret, skal en ny quest afspilles. Herved function nyRandom.
-                nyRandom();
+                nyRandom(); 
 
             }
 
