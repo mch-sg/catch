@@ -23,6 +23,7 @@ class Kurv {
      //   fill(this.col);
       //  rect(this.x, this.y, this.bred, this.dyb);
         image(turbanBillede, this.x, this.y);
+        noStroke();
     }
 
     flytKurv = function() {

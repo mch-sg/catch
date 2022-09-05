@@ -7,6 +7,7 @@ Først laver vi nogle variable til at lave nogle frugter:
 let appelsin;
 let lime;
 let tomat;
+let blabaer;
 let frugter; // Array til alle frugterne
 
 let retry = function() {
@@ -26,7 +27,7 @@ let turbanBillede;
 
 
 // Side quests array (forskellige quests)
-let quest = [" appelsiner i streg. ", " limes i streg. ", " tomater i streg. ",];
+let quest = [" appelsiner i streg. ", " limes i streg. ", " tomater i streg. ", " blåbær i streg. "];
 // let quest = ["Grib 3 appelsiner i streg. ", "Grib 6 limes i streg. ", "Grib 9 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
 // Quest resultatet
 let questR = 0; 
@@ -35,6 +36,7 @@ let quests = [
     {fruit: "appelsin", catch: mellem(2,5), Pts: 10}, // catch: 3
     {fruit: "lime", catch: mellem(3,6), Pts: 20}, // catch: 6
     {fruit: "tomat", catch: mellem(6,9), Pts: 30}, // catch: 9
+    {fruit: "blåbær", catch: mellem(3,5), Pts: 0, Liv: 10}, // catch: 9
 ];
 
 // Variablen der giver spilleren en random quest fra quests arrayet
@@ -107,11 +109,11 @@ function setup() {  // kører kun en gang, når programmet startes
 
     // Her laves lyden, når turbaen griber en frugt
     grib = createAudio('assets/i-catch.wav');
-    grib.volume(0.3);
+    grib.volume(0.5);
 
     // Her laves lyden, når turbaen ikke griber en frugt
     miss = createAudio('assets/i-miss.wav');
-    miss.volume(0.3); 
+    miss.volume(0.5); 
 
     /*
     SPIL LAVES FREMADRETTET
@@ -121,11 +123,12 @@ function setup() {  // kører kun en gang, når programmet startes
     //x = rad;
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(50, 425, 70, 50, 5); // 670, 100
-    // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve)
-    appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [220,110,0], 1, "appelsin"); // 30, 550
-    lime = new Frugt(random(50, 500), 25, 20, 30, 0, 0, [110,220,0], 2, "lime"); // 30, 530
-    tomat = new Frugt(random(50, 500), 25, 40, 30, 0, 0, [220,0,0], 3, "tomat"); // 30, 510
-    frugter = [appelsin, lime, tomat];
+    // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv)
+    appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
+    lime = new Frugt(random(50, 500), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
+    tomat = new Frugt(random(50, 500), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); // 30, 510 // 220,0,0
+    blabaer = new Frugt(random(50, 500), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1); // 0,110,220 // 49,77,103
+    frugter = [appelsin, lime, tomat, blabaer];
 
 }
 
@@ -138,13 +141,6 @@ function draw() {
         checkScore(); // tjek om hver frugt er blevet grebet
         display(); // vis alle frugterne og turbanen
 
- /*       if(questR != quests[tilfaeldig].catch) {
-            display();
-        } */
-
-/*        if(questR === quests[tilfaeldig].catch) {
-            displayQWin();
-        }  */
     }
     else {  // så er Game Over det der skal vises
         fill(col);
@@ -197,9 +193,13 @@ function display() {
     text("Liv: " + liv, width-160, 30); 
     text("Miss: " + missed, width-240, 30); 
     // Her vises mine quests i spillet
+    if (quests[tilfaeldig].Pts >= 1) {
     text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-160, 550); // width-640, 30 // width/5, 30
-
-// text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
+    }
+    if (quests[tilfaeldig].Liv >= 1) {
+        text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Liv + " liv)", width-160, 550); // width-640, 30 // width/5, 30
+    }
+    // text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
     
     //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
     for (let i = 0; i < frugter.length; i++) {
@@ -256,14 +256,21 @@ function checkScore() {
                     console.log("miss grebet: " + frugter[i].navn);
                     console.log("miss questen: " + frugter[tilfaeldig].navn )
                 }
-            }
+            } 
 
             // Hvis quest resultatet er det samme som antal gribet, skal man få belønningen og dernæst resette
             if(questR === quests[tilfaeldig].catch) {
-                // Belønning gives til scoren
-                score += quests[tilfaeldig].Pts;
-                // Spil lyd
-                winsong.play();
+                if(quests[tilfaeldig].catch >= 1) {
+                    // Belønning gives til scoren
+                    score += quests[tilfaeldig].Pts;
+                    // Spil lyd
+                    winsong.play();
+                } if (quests[tilfaeldig].Liv >= 1) {
+                    // Belønning gives til scoren
+                    liv += quests[tilfaeldig].Liv;
+                    // Spil lyd
+                    winsong.play();
+                }
                 // quest resultat genstartes til ny quest
                 questR = 0;
                 // når quest er klaret, skal en ny quest afspilles. Herved function nyRandom.
@@ -275,6 +282,7 @@ function checkScore() {
             if (turban.grebet(frugter[i])) { // (turban.grebet(frugter[i]))
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
+                liv += frugter[i].nLiv;
                 // Her spilles lyden, når turbaen griber en frugt
                 grib.play();
                 // Her skydes en ny frugt afsted
@@ -312,6 +320,13 @@ if(quests[2].catch >= 8) {
     quests[2].Pts = 30;
 } else {
     quests[2].Pts = 20;
+}
+
+// Blåbær
+if(quests[3].catch >= 4) { 
+    quests[3].Liv = 10;
+} else {
+    quests[3].Liv = 5;
 }
 
 

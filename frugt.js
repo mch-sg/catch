@@ -8,7 +8,8 @@ class Frugt {
      * ud fra dem. Værdierne huskes som hørende til netop 
      * dette objekt ved hjælp af nøgleordet this
      */
-    constructor(x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn) {
+    constructor(x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv) {
+        this.nLiv = nLiv;
         this.navn = navn
         this.smag = smag;  // hvor mange point frugten skal give
         this.x = x;     // x-position
@@ -24,9 +25,10 @@ class Frugt {
     /* Tegner frugten. Her kan evt. sættes et billede ind i stedet
      */
     tegn = function() {
-        if (this.tid < 100) {
+        if (this.tid < 25) { // hvor lang tid de er der
             fill(this.col);
             ellipse(this.x, this.y, this.bred, this.dyb);
+            noStroke();
             //image(frugtBillede, this.x, this.y);
         }
     }
@@ -54,6 +56,7 @@ class Frugt {
 
         if (this.x > width || this.y > height) {
             missed += 1;
+            miss.play();
             // frugter[i].smag fjerner smagen fra liv (se: frugt.js class Frugt (smag))
             liv -= 1;
             if (liv < 1) {
@@ -78,16 +81,16 @@ class Frugt {
         this.y = 25;
         this.xspeed = 0;
         this.yspeed = 0;
-        this.tid = random(50, 400);
+        this.tid = random(20, 300); //random(50, 400)
     }
 
     clickNew = function() {
         //Her skal vi sørge for at frugten skydes afsted igen 
         let newY = random(480, 560);
-        let newYSpeed = - sqrt((newY-15)*2*grav);
+        let newYSpeed = - sqrt((newY-15)*grav);
         this.x = mouseX; // 20
         this.y = mouseY; // newY
-        this.xspeed = random(4) ;
+        this.xspeed = random(5) ;
         this.yspeed = newYSpeed ;
         this.tid = 0;
     }

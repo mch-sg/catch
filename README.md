@@ -4,6 +4,10 @@ Brush-up course of p5 and programming skills at the start of a new year with Dig
 The point of this game is to adapt and further develop this template, to make it different than it started out to be.
 
 <br />
+
+In this game you need to catch the various fruits to gain points. If you catch enough points, you can win the game, however, if you lose too many points, you will lose. During the game, you can perform quests that will give the player bonus points. It is up for the player to decide if it is worth doing these quests.
+
+<br />
 <br />
 
 ## My game in MDA function
