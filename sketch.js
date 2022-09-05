@@ -73,7 +73,7 @@ let spilIgang = true;   //flag
 let vundet = false;
 let tabt = false;
 const col = [220,110,0]; // farven på gameOver teksten
-const grav = 0.1; // tyngdekraften
+const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 
 // Kurv.js billedet (i stedet for firkant)
 function preload() {
@@ -96,7 +96,7 @@ function setup() {  // kører kun en gang, når programmet startes
 
     // Her laves lyden til spillet. Variablen song er baggrundsmusikken.
     song = createAudio('assets/intro-music.wav'); // assets/bg.wav
-    song.autoplay(true);
+    song.play();
     song.volume(0.5); 
 
     // Her laves vinderlyden.
@@ -188,16 +188,16 @@ function draw() {
 // Display følgende tekst / frugter 
 function display() {
     fill(0);
-    textSize(12);
-    text("Score: "+ score, width-80, 30);
-    text("Liv: " + liv, width-160, 30); 
-    text("Miss: " + missed, width-240, 30); 
+    textSize(14); // 12
+    text("Score: "+ score, width-80, 40);
+    text("Liv: " + liv, width-160, 40); 
+    text("Miss: " + missed, width-240, 40); 
     // Her vises mine quests i spillet
     if (quests[tilfaeldig].Pts >= 1) {
-    text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-160, 600); // width-160, 550
+    text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-170, 600); // width-160, 550
     }
     if (quests[tilfaeldig].Liv >= 1) {
-        text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Liv + " liv)", width-160, 600); // width-640, 30 // width/5, 30
+        text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Liv + " liv)", width-170, 600); // width-640, 30 // width/5, 30
     }
     // text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
     
