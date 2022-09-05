@@ -72,13 +72,21 @@ let liv = 50; // 8
 let spilIgang = true;   //flag
 let vundet = false;
 let tabt = false;
-const col = [220,110,0]; // farven på gameOver teksten
+const col = [255,99,71]; // farven på gameOver teksten
 const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 
 // Kurv.js billedet (i stedet for firkant)
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
 }
+
+/*
+if(tabt === true) {
+function mousePressed() {
+    col = [0,0,0];
+}
+}
+*/
 
 
 /* 
@@ -142,27 +150,31 @@ function draw() {
         display(); // vis alle frugterne og turbanen
 
     }
-    else {  // så er Game Over det der skal vises
-        fill(col);
-        textSize(46);
-        text("Game Over",width/2 + random(-5,5), height/2 + random(3));
-        text("Score: "+score, width/2, height/2 + 50);
-        
-    }
 
     // Hvis spilleren har vundet, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
     if(vundet) { 
-        spilIgang = false;
+  /*      spilIgang = false;
         background(240);
         fill(col);
         textSize(46);
         text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3));
         text("Score: "+score, width/2, height/2 + 55);
         textSize(20);
-        text("MISS: "+missed, width/2, height/2 + - 65);
-   //     text("Retry "+ retry(), width/2, height/2 + 85);
+        text("MISS: "+missed, width/2, height/2 + - 65); */
 
-        // window.location.reload(true)
+        spilIgang = false;
+        background(245);
+        fill(col);
+        textSize(65);
+        textFont('Arial');
+        textStyle(NORMAL);
+        text("Du har vundet!",width/2 + random(-5,5), height/2 + random(3)); 
+        textSize(18);
+        textFont('Arial');
+        text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
+        textSize(30);
+        textFont('Arial');
+        text("Prøv igen",width/2, height/2 + 80);
 
         // Her skal vi sørge for at lyden afspilles
         winsong.play();
@@ -172,13 +184,19 @@ function draw() {
     // Hvis spilleren har tabt, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
     if(tabt) {
         spilIgang = false;
-        background(247);
+        background(245);
         fill(col);
-        textSize(46);
+        textSize(65);
+        textFont('Arial');
+        textStyle(NORMAL);
         text("Din taber!",width/2 + random(-5,5), height/2 + random(3)); 
-        text("Score: "+score, width/2, height/2 + 55);
-        textSize(20);
-        text("MISS: "+missed, width/2, height/2 + - 65);
+        textSize(18);
+        textFont('Arial');
+        text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
+        textSize(30);
+        textFont('Arial');
+        text("Prøv igen",width/2, height/2 + 80);
+
         losesong.play();
         song.stop();
     }
@@ -285,6 +303,7 @@ function checkScore() {
                 liv += frugter[i].nLiv;
                 // Her spilles lyden, når turbaen griber en frugt
                 grib.play();
+
                 // Her skydes en ny frugt afsted
                 frugter[i].shootNew(); 
             }
