@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/93657779/188674370-55c45736-6884-4b52-8f27-3fb3d9c955c2.png" height="100" width="100" >
+<img src="https://user-images.githubusercontent.com/93657779/188674370-55c45736-6884-4b52-8f27-3fb3d9c955c2.png" height="100" width="100">
 
 
 # Appelsiner i haven

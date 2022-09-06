@@ -25,6 +25,10 @@ function mellem(min, max) {
 let turban;
 let turbanBillede;
 let startImg;
+let startHead;
+let startEnter;
+let startImg2;
+let provIgen;
 
 
 // Side quests array (forskellige quests)
@@ -79,10 +83,14 @@ const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 let menu = true;
 
 
-// Kurv.js billedet (i stedet for firkant)
+// Preloader alle mine billeder
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
-    startImg = loadImage('assets/11.png');
+    startImg = loadImage('assets/startside.png'); 
+    startImg2 = loadImage('assets/startside2.png'); 
+    startHead = loadImage('assets/startside-t1.png');
+    startEnter = loadImage('assets/startside-t2.png');
+    provIgen = loadImage('assets/provigen-t.png');
 }
 
 
@@ -148,19 +156,18 @@ function draw() {
         display(); // vis alle frugterne og turbanen
 
     }
-    
 
     // Menuen laves inden spillet er i gang
     if(menu) {
-        background(startImg); // 245
+        background(startImg); // 245 (startImg)
         fill([255,255,255]); // [255,255,255]
         textSize(65); textFont('Arial');
-        text("Appelsiner i haven",width/2 + random(-0.25,0.25), height/2 + random(0.25));  // width/2 + random(-0.5,0.5), height/2 + random(1)
+        image(startHead, width/2 - 310 + random(-1,1),height/2 - 50 + random(1),600,95);
+        image(startEnter, width/2 - 135,height/2 + 90,263,19);
+       // text("Appelsiner i haven",width/2 + random(-0.25,0.25), height/2 + random(0.25));  // width/2 + random(-0.5,0.5), height/2 + random(1)
         textSize(30);
-        //fill([252, 157, 101])
         fill([249, 210, 198]);
-        text("Start spillet (enter)",width/2, height/2 + 100);
-    //    image(logIco, width/2 - 35, height/2 - 200, 75, 75);
+        //text("Start spillet (enter)",width/2, height/2 + 100);
 
     }  
 
@@ -172,8 +179,8 @@ function draw() {
         text("Du har vundet!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(18);
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
-        textSize(30);
-        text("Prøv igen (enter)",width/2, height/2 + 80);
+        image(provIgen, width/2 - 115,height/2 + 70,226,19);
+        //textSize(30); text("Prøv igen (enter)",width/2, height/2 + 80);
 
         // Her skal vi sørge for at lyden afspilles
         winsong.play();
@@ -188,8 +195,8 @@ function draw() {
         text("Din taber!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(18);
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
-        textSize(30);
-        text("Prøv igen (enter)",width/2, height/2 + 80);
+        image(provIgen, width/2 - 115,height/2 + 70,226,19);
+        //textSize(30); text("Prøv igen (enter)",width/2, height/2 + 80);
 
         losesong.play();
         song.stop();

@@ -71,7 +71,7 @@ class Frugt {
         } if (missed >= 50) {
             tabt = true;
         }
-    }
+    } 
 
     shootNew = function() {
         //Her skal vi sørge for at frugten skydes afsted igen 
