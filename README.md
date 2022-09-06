@@ -1,4 +1,7 @@
-# catch
+<img src="https://user-images.githubusercontent.com/93657779/188674370-55c45736-6884-4b52-8f27-3fb3d9c955c2.png" height="100" width="100" >
+
+
+# Appelsiner i haven
 Brush-up course of p5 and programming skills at the start of a new year with Digital Teknik.
 
 The point of this game is to adapt and further develop this template, to make it different than it started out to be.
