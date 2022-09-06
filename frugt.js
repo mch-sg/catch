@@ -55,10 +55,10 @@ class Frugt {
         }
 
         if (this.x > width || this.y > height) {
-            missed += 1;
+            missed += this.smag;
             miss.play();
             // frugter[i].smag fjerner smagen fra liv (se: frugt.js class Frugt (smag))
-            liv -= 1;
+            liv -= this.smag;
             if (liv < 1) {
                 spilIgang = false;
             }
