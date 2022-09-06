@@ -295,7 +295,7 @@ function checkScore() {
                     console.log("frugt questen: " + frugter[tilfaeldig].navn);
                 } else {
                     // Hvis frugten ikke er den samme som i questen, så skal quest resultatet genstartes
-                    questR = 0; 
+                //    questR = 0; 
                     // Jeg logger her hvilken frugt, der er grebet (miss1), og hvilken frugt, der er i questen (miss2)
                     console.log("miss grebet: " + frugter[i].navn);
                     console.log("miss questen: " + frugter[tilfaeldig].navn )
