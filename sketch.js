@@ -41,7 +41,7 @@ let quests = [
     {fruit: "appelsin", catch: mellem(2,5), Pts: 10}, // catch: 3
     {fruit: "lime", catch: mellem(3,6), Pts: 20}, // catch: 6
     {fruit: "tomat", catch: mellem(6,9), Pts: 30}, // catch: 9
-    {fruit: "blåbær", catch: mellem(3,5), Pts: 0, Liv: 10}, // catch: 9
+    {fruit: "blåbær", catch: mellem(3,9), Pts: 0, Liv: 10}, // catch: 9
 ];
 
 // Variablen der giver spilleren en random quest fra quests arrayet
@@ -220,6 +220,7 @@ function keyPressed() {
             score = 0;
             missed = 0;
             liv = 50; 
+            nyRandom();
         
             spilIgang = true;
             song.play();
@@ -342,31 +343,35 @@ function checkScore() {
 Definerer point ud fra hvor mange frugter man skal gribe
 */
 
-// Appelsiner
+// Appelsiner (2,5)
 if(quests[0].catch >= 4) { 
-    quests[0].Pts = 10;
+    quests[0].Pts = 8;
 } else if(quests[0].catch <= 2) {
     quests[0].Pts = 2;
 } else {
     quests[0].Pts = 5;
 }
 
-// Limes
+// Limes (3,6)
 if(quests[1].catch >= 5) { 
-    quests[1].Pts = 20;
+    quests[1].Pts = 13;
+} else if(quests[1].catch <= 3) {
+    quests[1].Pts = 7;
 } else {
-    quests[1].Pts = 15;
+    quests[1].Pts = 10;
 }
 
-// Tomater
-if(quests[2].catch >= 8) { 
-    quests[2].Pts = 30;
-} else {
+// Tomater (6,9)
+if(quests[2].catch > 8) { 
+    quests[2].Pts = 25;
+} else if(quests[2].catch <= 7) {
+    quests[2].Pts = 15;
+} else { // 8 
     quests[2].Pts = 20;
 }
 
-// Blåbær
-if(quests[3].catch >= 4) { 
+// Blåbær (3,9)
+if(quests[3].catch > 6) { 
     quests[3].Liv = 10;
 } else {
     quests[3].Liv = 5;
