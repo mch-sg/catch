@@ -24,7 +24,7 @@ function mellem(min, max) {
 // Turbanen
 let turban;
 let turbanBillede;
-let logIco;
+let startImg;
 
 
 // Side quests array (forskellige quests)
@@ -78,10 +78,10 @@ const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 
 let menu = true;
 
+
 // Kurv.js billedet (i stedet for firkant)
 function preload() {
     turbanBillede = loadImage('assets/basket.png');
-    logIco = loadImage('assets/favicon.png');
     startImg = loadImage('assets/11.png');
 }
 
@@ -93,7 +93,6 @@ function setup() {  // kører kun en gang, når programmet startes
     createCanvas(850, 650); // 750, 600
 
     textAlign(CENTER, CENTER);
-
 
 
     /*
@@ -120,6 +119,7 @@ function setup() {  // kører kun en gang, når programmet startes
     miss = createAudio('assets/i-miss.wav');
     miss.volume(0.5); 
 
+
     /*
     SPIL LAVES FREMADRETTET
     */
@@ -139,8 +139,7 @@ function setup() {  // kører kun en gang, når programmet startes
 
 
 function draw() { 
-    background(245); // 240 // 236, 242, 235 // 243, 246, 242
-    
+   background(245); // 245
 
     if (spilIgang) {
         flytFrugter(); // flyt alle frugterne
@@ -150,18 +149,17 @@ function draw() {
 
     }
     
-//    let bag = image(startImg,0,0, width, height);
 
     // Menuen laves inden spillet er i gang
     if(menu) {
-        background(245);
- //       background(bag);
-        fill(col);
+        background(startImg); // 245
+        fill([255,255,255]); // [255,255,255]
         textSize(65); textFont('Arial');
-        text("Appelsiner i haven",width/2 + random(-0.5,0.5), height/2 + random(1)); 
-        textSize(25);
-        fill([252, 157, 101])
-        text("Tryk enter for at starte",width/2, height/2 + 100);
+        text("Appelsiner i haven",width/2 + random(-0.25,0.25), height/2 + random(0.25));  // width/2 + random(-0.5,0.5), height/2 + random(1)
+        textSize(30);
+        //fill([252, 157, 101])
+        fill([249, 210, 198]);
+        text("Start spillet (enter)",width/2, height/2 + 100);
     //    image(logIco, width/2 - 35, height/2 - 200, 75, 75);
 
     }  
