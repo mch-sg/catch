@@ -136,7 +136,7 @@ function setup() {  // kører kun en gang, når programmet startes
     //newspeed = yspeed;
     //x = rad;
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
-    turban = new Kurv(50, 425, 70, 50, 5); // 670, 100
+    turban = new Kurv(50, 425, 100, 100, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv)
     appelsin = new Frugt(random(25, 650), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
     lime = new Frugt(random(25, 650), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
