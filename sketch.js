@@ -6,6 +6,7 @@ Først laver vi nogle variable til at lave nogle frugter:
 // Frugterne
 let appelsin;
 let lime;
+let granataeble;
 let tomat;
 let blabaer;
 let bombe;
@@ -33,14 +34,14 @@ let provIgen;
 
 
 // Side quests array (forskellige quests)
-let quest = [" appelsiner i streg. ", " limes i streg. ", " tomater i streg. ", " blåbær i streg. "];
+let quest = [" appelsiner i streg. ", " granatæbler i streg. ", " tomater i streg. ", " blåbær i streg. "];
 // let quest = ["Grib 3 appelsiner i streg. ", "Grib 6 limes i streg. ", "Grib 9 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
 // Quest resultatet
 let questR = 0; 
 // qquests definerer de forskellige værdier (hvor mange man skal gribe) og (hvilken frugt) sammen med det specifikke array quest
 let quests = [
     {fruit: "appelsin", catch: mellem(2,5), Pts: 10}, // catch: 3
-    {fruit: "lime", catch: mellem(3,6), Pts: 20}, // catch: 6
+    {fruit: "granatæblr", catch: mellem(3,6), Pts: 20}, // catch: 6
     {fruit: "tomat", catch: mellem(6,9), Pts: 30}, // catch: 9
     {fruit: "blåbær", catch: mellem(3,9), Pts: 0, Liv: 10}, // catch: 9
 ];
@@ -139,13 +140,14 @@ function setup() {  // kører kun en gang, når programmet startes
     turban = new Kurv(50, 425, 100, 100, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv)
     appelsin = new Frugt(random(25, 650), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
+    granataeble = new Frugt(random(25, 650), 25, 37, 40, 0, 0, [255, 187, 180], 3, "granatæble", 0);  // 243, 85, 136 // 113,169,90
     lime = new Frugt(random(25, 650), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
     tomat = new Frugt(random(25, 650), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); // 30, 510 // 220,0,0
     blabaer = new Frugt(random(25, 650), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1); // 0,110,220 // 49,77,103
     
     bombe = new Frugt(random(25, 650), 25, 30, 30, 0, 0, [60,60,60], 0, "bombe", 0); // 0,110,220 // 49,77,103
     
-    frugter = [appelsin, lime, tomat, blabaer, bombe];
+    frugter = [appelsin, granataeble, tomat, blabaer, bombe];
 
 }
 
