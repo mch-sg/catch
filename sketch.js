@@ -165,9 +165,15 @@ function setup() {  // kører kun en gang, når programmet startes
     
     if (livRan <= 40) {
         let vandmelon;
-        vandmelon = new Frugt(random(25, 650), 25, 50, 50, 0, 0, [113, 169, 90], 5, "vandmelon", 0);  // 243, 85, 136
+        vandmelon = new Frugt(random(25, 650), 25, 50, 50, 0, 0, [133,169,90], 5, "vandmelon", 0);  // 243, 85, 136 // 113,169,90
         frugter.push(vandmelon);
     }
+    if (livRan <= 30) {
+        let granataeble;
+        granataeble = new Frugt(random(25, 650), 25, 37, 40, 0, 0, [255, 187, 180], 3, "granatæble", 0);  // 243, 85, 136 // 113,169,90
+        frugter.push(granataeble);
+    }
+
 
 }
 
