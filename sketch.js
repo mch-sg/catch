@@ -8,6 +8,7 @@ let appelsin;
 let lime;
 let tomat;
 let blabaer;
+let bombe;
 let frugter; // Array til alle frugterne
 
 let retry = function() {
@@ -137,11 +138,14 @@ function setup() {  // kører kun en gang, når programmet startes
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(50, 425, 70, 50, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv)
-    appelsin = new Frugt(random(50, 500), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
-    lime = new Frugt(random(50, 500), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
-    tomat = new Frugt(random(50, 500), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); // 30, 510 // 220,0,0
-    blabaer = new Frugt(random(50, 500), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1); // 0,110,220 // 49,77,103
-    frugter = [appelsin, lime, tomat, blabaer];
+    appelsin = new Frugt(random(25, 650), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
+    lime = new Frugt(random(25, 650), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
+    tomat = new Frugt(random(25, 650), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); // 30, 510 // 220,0,0
+    blabaer = new Frugt(random(25, 650), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1); // 0,110,220 // 49,77,103
+    
+    bombe = new Frugt(random(25, 650), 25, 30, 30, 0, 0, [60,60,60], 0, "bombe", 0); // 0,110,220 // 49,77,103
+    
+    frugter = [appelsin, lime, tomat, blabaer, bombe];
 
 }
 
@@ -154,7 +158,6 @@ function draw() {
         flytTurban();  // flyt turbanen
         checkScore(); // tjek om hver frugt er blevet grebet
         display(); // vis alle frugterne og turbanen
-
     }
 
     // Menuen laves inden spillet er i gang
@@ -220,13 +223,16 @@ function keyPressed() {
             score = 0;
             missed = 0;
             liv = 50; 
+
             nyRandom();
-        
+            setup();
+
             spilIgang = true;
             song.play();
-
         }
     }
+
+    
 }
 
 
@@ -321,6 +327,11 @@ function checkScore() {
                 // når quest er klaret, skal en ny quest afspilles. Herved function nyRandom.
                 nyRandom(); 
 
+            }
+
+            // Spilleren har tabt, hvis personen greber bomben (frugt 4)
+            if(turban.grebet(frugter[4])) {
+                tabt = true;
             }
 
             //   console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
