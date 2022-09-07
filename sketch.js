@@ -31,6 +31,8 @@ let startEnter;
 let startImg2;
 let provIgen;
 
+let levelUp;
+
 
 // Side quests array (forskellige quests)
 let quest = [" appelsiner i streg. ", " limes i streg. ", " tomater i streg. ", " blåbær i streg. "];
@@ -60,6 +62,18 @@ function nyRandom() {
     tilfaeldig = tilfaeldig2();
 }
 
+let livRan = 50; // [50, 30, 20, 10]
+
+function nyLiv() {
+    if(livRan > 10) {
+        livRan -= 10;
+    } else {
+        livRan = 10;
+    }
+}
+
+
+
 // Tjekker, om mine værdier passer med de værdier, der er i quests arrayet
 console.log(quest[tilfaeldig]);
 console.log(tilfaeldig);
@@ -82,6 +96,7 @@ const col = [255,99,71]; // farven på gameOver teksten
 const grav = 0.12; // tyngdekraften // 0.12 // 0.1
 
 let menu = true;
+levelUp = false;
 
 
 // Preloader alle mine billeder
@@ -147,7 +162,15 @@ function setup() {  // kører kun en gang, når programmet startes
     
     frugter = [appelsin, lime, tomat, blabaer, bombe];
 
+    
+    if (livRan <= 40) {
+        let vandmelon;
+        vandmelon = new Frugt(random(25, 650), 25, 50, 50, 0, 0, [113, 169, 90], 5, "vandmelon", 0);  // 243, 85, 136
+        frugter.push(vandmelon);
+    }
+
 }
+
 
 
 function draw() { 
@@ -179,7 +202,7 @@ function draw() {
         spilIgang = false;
         background(245); fill(col);
         textSize(65); textFont('Arial');
-        text("Du har vundet!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
+        text("Næste niveau",width/2 + random(-0.5,0.5), height/2 + random(1)); // "Du har vundet!
         textSize(18);
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
         image(provIgen, width/2 - 115,height/2 + 70,226,19);
@@ -210,7 +233,7 @@ function draw() {
 
 // Funktionen, der definerer at man skal trykke enter for at starte spillet, og der genstarter spillet til de normale værdier
 function keyPressed() {
-    if (spilIgang == false) {
+    if (spilIgang == false && menu == true || tabt == true) {
         if (keyCode === 13) { // 87 = W // 32 = SPACE // 13 = ENTER
             clear();
             vundet = false;
@@ -232,7 +255,30 @@ function keyPressed() {
         }
     }
 
-    
+    if (levelUp == true) {
+        if (keyCode === 78) { // 87 = W // 32 = SPACE // 13 = ENTER // 78 = N
+            clear();
+            vundet = false;
+            tabt = false;
+            menu = false;
+            losesong.stop();
+            winsong.stop();
+            levelUp = false;
+
+            tid = 150;
+            missed = 0;
+            score = 0;
+            nyLiv();
+            liv = livRan;
+
+            nyRandom();
+            setup();
+
+            spilIgang = true;
+            song.play();
+        }
+    }
+
 }
 
 
@@ -252,12 +298,12 @@ function display() {
     }
     // text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
     
-    //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
+    // Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
     for (let i = 0; i < frugter.length; i++) {
         frugter[i].tegn();
     }    
 
-    // Her vises turbanen - foreløbig blot en firkant
+    // Her vises turbanen
     turban.tegn(); 
 }
 
@@ -331,6 +377,7 @@ function checkScore() {
 
             // Spilleren har tabt, hvis personen greber bomben (frugt 4)
             if(turban.grebet(frugter[4])) {
+                levelUp = true;
                 tabt = true;
             }
 

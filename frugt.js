@@ -19,7 +19,7 @@ class Frugt {
         this.xspeed = xspeed;
         if (yspeed < - sqrt((y-15)*2*grav)) { this.yspeed = - sqrt((y-15)*2*grav); } else { this.yspeed = yspeed;} // Opnår højden
         this.col = farve;
-        this.tid = random(20, 200); // Bestemmer, hvor langt tid den venter, inden den skydes afsted
+        this.tid = random(50, 200); // Bestemmer, hvor langt tid den venter, inden den skydes afsted
     }   
     
     /* Tegner frugten. Her kan evt. sættes et billede ind i stedet
@@ -61,17 +61,49 @@ class Frugt {
             // frugter[i].smag fjerner smagen fra liv (se: frugt.js class Frugt (smag))
             liv -= this.smag;
             liv -= this.nLiv;
-            if (liv < 1) {
-                spilIgang = false;
-            }
+
             this.shootNew();
+        }
+
+        if (liv < 1) {
+            spilIgang = false;
+            tabt = true;
         }
 
 
         if (score >= 100) {
+            levelUp = true;
             vundet = true;
         } if (missed >= 50) {
             tabt = true;
+        }
+
+        if (livRan == 40) {
+            if (score >= 15) {
+                levelUp = true;
+                vundet = true;
+            } 
+        }
+
+        if (livRan == 30) {
+            if (score >= 15) {
+                levelUp = true;
+                vundet = true;
+            } 
+        }
+
+        if (livRan == 20) {
+            if (score >= 15) {
+                levelUp = true;
+                vundet = true;
+            } 
+        }
+
+        if (livRan <= 10) {
+            if (score >= 15) {
+                levelUp = true;
+                vundet = true;
+            } 
         }
     } 
 
@@ -83,7 +115,7 @@ class Frugt {
         this.y = 25;
         this.xspeed = 0;
         this.yspeed = 0;
-        this.tid = random(20, 200); // Bestemmer, hvor hurtigt den skal spawne en ny frugt´
+        this.tid = random(50, 300); // Bestemmer, hvor hurtigt den skal spawne en ny frugt´
     }
 
     clickNew = function() {
