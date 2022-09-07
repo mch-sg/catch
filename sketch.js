@@ -377,7 +377,7 @@ function checkScore() {
 
             // Spilleren har tabt, hvis personen greber bomben (frugt 4)
             if(turban.grebet(frugter[4])) {
-                levelUp = true;
+                //levelUp = true;
                 tabt = true;
             }
 
