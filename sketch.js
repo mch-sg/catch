@@ -140,7 +140,7 @@ function setup() {  // kører kun en gang, når programmet startes
     turban = new Kurv(50, 425, 100, 100, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv)
     appelsin = new Frugt(random(25, 650), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
-    granataeble = new Frugt(random(25, 650), 25, 37, 40, 0, 0, [255, 187, 180], 3, "granatæble", 0);  // 243, 85, 136 // 113,169,90
+    granataeble = new Frugt(random(25, 650), 25, 37, 40, 0, 0, [255, 187, 180], 2, "granatæble", 0);  // 243, 85, 136 // 113,169,90
     lime = new Frugt(random(25, 650), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
     tomat = new Frugt(random(25, 650), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); // 30, 510 // 220,0,0
     blabaer = new Frugt(random(25, 650), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1); // 0,110,220 // 49,77,103
