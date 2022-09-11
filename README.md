@@ -1,61 +1,91 @@
 <img src="https://user-images.githubusercontent.com/93657779/188674370-55c45736-6884-4b52-8f27-3fb3d9c955c2.png" height="100" width="100">
 
 
+
 # Appelsiner i haven
-Brush-up course of p5 and programming skills at the start of a new year with Digital Teknik.
+Brush-up kursus af p5 og programmering færdigheder i starten af et nyt år med Digital Teknik.
 
-The point of this game is to adapt and further develop this template, to make it different than it started out to be.
-
-<br />
-
-In this game you need to catch the various fruits to gain points. If you catch enough points, you can win the game, however, if you lose too many points, you will lose. During the game, you can perform quests that will give the player bonus points. It is up for the player to decide if it is worth doing these quests.
+Pointen med dette spil er at tilpasse og videreudvikle denne skabelon for at gøre den anderledes, end den startede med at være.
 
 <br />
+
+I dette spil skal du fange de forskellige frugter for at få point. Hvis du fanger nok point, kan du vinde spillet, men hvis du taber for mange point, taber du. I løbet af spillet kan du udføre quests, der giver spilleren bonuspoint. Det er op til spilleren at beslutte, om det er værd at udføre disse quests.
+
+<br />
 <br />
 
-## My game in MDA function
-Mechanics, Dynamics, Aesthetics
+## Mit spil i MDA-funktion
+Mekanik, Dynamik, Æstetik
+
+Jeg vil vise fra brugeroplevelsen, altså fra Aesthetics til Mechanics.
 
 
-### Mechanics
-In terms of mechanics (rules, basic components, action), I want to build on my game...
 
-It should be clear to the player that certain fruits give more points than others, using colors.
 
-I want to create side-quests, so that the player can earn bonus-points, which grants the player more purpose and the game becomes more engaging.
+### Æstetik
+Med hensyn til æstetik (følelsesmæssig respons) vil jeg bygge videre på mit spil ...
+
+**1. Challenge (obstacle)**
+
+Som en førsteprioritering vil jeg gøre spillet til en udfordring (forhindringsbane), hvis jeg har tid til at udvide spillet, vil jeg tilføje yderligere en sanse-fornøjelse.
+
+Jeg vil gerne tilføje 'bomber' eller i det mindste en slags objekt, der tager et liv væk fra spilleren (eller måske dræber spilleren helt). Her kan du også gøre selve smagsvariablen bedre med hensyn til at vise, hvilke der giver specifikke punkter (måske i form af farve). 
+
+Jeg vil skabe quests, der får spilleren til at forsøge at fange visse frugter, og dermed skabe en større udfordring sammen med bomben.
+
+
+**2. Sensation (sense-pleasure)**
+
+Hvis jeg har tid, vil jeg skabe oplevelseslyde for spilleren, når man vinder en quest, når man får et point, og når man taber et point. Måske endda baggrundsmusik.
+
+Derudover skal det visuelle skabe en oplevelse, så du oplever noget visuelt interessant at se på (i forhold til baggrund og hele spillet).
+
+Jeg vil gerne tilføje en startskærm, hvilket ville gøre spillet mere visuelt tiltalende. Jeg ønsker også at gøre challenge til det primære mål, så bomberne og missionerne skal se bedre ud som en prioritet. Derfor ønsker jeg ikke at tilføje en baggrund i selve spillet, da det er svært at bruge en baggrund, der ikke trækker din opmærksomhed væk fra det primære mål, nemlig at være en udfordring.
+
+
 
 
 ### Dynamics
-In terms of dynamics (player input), I will build on my game...
+Med hensyn til dynamik (spillerinput) vil jeg bygge videre på mit spil...
 
-The player must be able to grasp the various fruits, and must be able to achieve the side-quests that are made in mechanics. For example, there may be a quest where the player has to grab 3 oranges in a row. Once the player has grabbed 3 oranges, you will get bonus points as a reward.
+Spilleren skal være i stand til at forstå de forskellige frugter, og skal være i stand til at opnå de quests, der er lavet i mekanik. For eksempel kan der være en quest, hvor spilleren skal gribe 3 appelsiner i træk. Når spilleren har grebet 3 appelsiner, får du bonuspoint som belønning.
 
-These side quests should also come up gradually, one should just be able to do 1 quest at a time.
+Spilleren bliver nødt til at få fat i de 3 appelsiner i træk, men spilleren kan stadig få fat i andre frugter uden at miste streaken. Spilleren kan ikke gå glip af en appelsin, mens han udfører questen, eller hele questen nulstilles.
 
-You shouldn't be able to lose if you don't achieve these quests. It's just bonus points if you wish.
+Disse quests skal også komme op gradvist, man skal bare være i stand til at udføre 1 quest ad gangen.
 
-You should be able to die from a bomb if you grab it in the basket. 
+Du bør ikke være i stand til at tabe, hvis du ikke opnår disse quests. Det er bare bonuspoint, hvis du ønsker det.
 
-When you lose too many fruits, you should be able to lose. If you catch enough fruits, you should be able to win. At these screens, you should be able to try again via. a button.
+Du skal kunne dø af en bombe, hvis du griber den i kurven. 
+
+Når du mister for mange frugter, skal du kunne tabe. Hvis du fanger nok frugter, skal du være i stand til at vinde. På disse skærme skal du være i stand til at prøve igen via. en knap.
 
 
-### Aesthetics
-In terms of aesthetics (emotional response), I want to build on my game...
 
-1. Sensation (sense-pleasure)
+### Mechanics
+Med hensyn til mekanik (regler, grundlæggende komponenter, handling) vil jeg bygge videre på mit spil ...
 
-During sense-pleasure, the player must experience sounds when achieving a side quest, when generally gaining a point, and when losing a point. Maybe even background music.
+Det skal være klart for spilleren, at visse frugter giver flere point end andre ved hjælp af farver.
 
-In addition, the visuals must create an experience so that you experience something visually interesting to look at (in relation to background and the whole game).
+Jeg vil oprette quests, så spilleren kan optjene bonuspoint, hvilket giver spilleren mere formål, og spillet bliver mere engagerende.
 
-2. Challenge (obstacle course)
+<br /><br />
 
-I would also like to add 'bombs', or at least some kind of object that takes a life away from the player (or maybe kills the player altogether). Here you can also make the taste variable itself better in terms of showing which ones give specific points (perhaps in the form of color). 
+
+### Implementation
+
+Forklar koden...
+
+
+
 
 <br /><br />
 
 ## How it works
 [...]
+
+
+
 
 <br /><br />
 
