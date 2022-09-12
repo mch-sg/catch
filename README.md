@@ -55,7 +55,6 @@ Derudover skal det visuelle skabe en oplevelse, så du oplever noget visuelt int
 Jeg vil gerne tilføje en startskærm, hvilket ville gøre spillet mere visuelt tiltalende. Jeg ønsker også at gøre challenge til det primære mål, så bomberne og missionerne skal se bedre ud som en prioritet. Derfor ønsker jeg *ikke* at tilføje en baggrund i selve spillet, da det er svært at bruge en baggrund, der ikke trækker din opmærksomhed væk fra det primære mål, nemlig at være en udfordring.
 
 <br />
-<br />
 
 ### Dynamics
 Med hensyn til dynamik (spillerinput) vil jeg bygge videre på mit spil...
@@ -72,7 +71,6 @@ Du skal kunne dø af en bombe, hvis du griber den i kurven.
 
 Når du mister for mange frugter, skal du kunne tabe. Hvis du fanger nok frugter, skal du være i stand til at vinde. På disse skærme skal du være i stand til at prøve igen via. en knap.
 
-<br />
 <br />
 
 ### Mechanics
