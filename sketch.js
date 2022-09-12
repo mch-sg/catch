@@ -20,6 +20,8 @@ function mellem(min, max) {
 // Turbanen
 let turban;
 let turbanBillede;
+
+// Teksten i startmenuen
 let startImg;
 let startHead;
 let startEnter;
@@ -29,7 +31,6 @@ let provIgen;
 
 // Quest array til display (forskellige quests)
 let quest = [" appelsiner i streg. ", " granatæbler i streg. ", " tomater i streg. ", " blåbær i streg. "];
-// let quest = ["Grib 3 appelsiner i streg. ", "Grib 6 limes i streg. ", "Grib 9 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
 // Quest resultatet
 let questR = 0; 
 // Quests definerer de forskellige værdier (hvor mange man skal gribe) og (hvilken frugt) sammen med det specifikke array quest
@@ -103,11 +104,11 @@ function setup() {  // kører kun en gang, når programmet startes
     */
 
     // Her laves lydene til spillet. Variablen song er baggrundsmusikken.
-    song = createAudio('assets/intro-music.wav'); // assets/bg.wav
+    song = createAudio('assets/intro-music.wav');
     song.volume(0.5); 
 
     // Her laves vinderlyden.
-    winsong = createAudio('assets/i-win.wav'); // assets/winnie.wav
+    winsong = createAudio('assets/i-win.wav');
     winsong.volume(0.3);
 
     // Her laves taberlyden.
@@ -146,7 +147,7 @@ function setup() {  // kører kun en gang, når programmet startes
 
 
 function draw() { 
-   background(245); // Tegner baggrunden
+   background(245); // Tegner baggrunden // 245
 
     if (spilIgang) {
         flytFrugter(); // flyt alle frugterne

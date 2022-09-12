@@ -54,6 +54,8 @@ Derudover skal det visuelle skabe en oplevelse, så du oplever noget visuelt int
 
 Jeg vil gerne tilføje en startskærm, hvilket ville gøre spillet mere visuelt tiltalende. Jeg ønsker også at gøre challenge til det primære mål, så bomberne og missionerne skal se bedre ud som en prioritet. Derfor ønsker jeg *ikke* at tilføje en baggrund i selve spillet, da det er svært at bruge en baggrund, der ikke trækker din opmærksomhed væk fra det primære mål, nemlig at være en udfordring.
 
+Jeg vil gerne tilføje en mere interessant font til startmenuen samt retry knappen. Jeg tænker umiddelbart at gøre dette ved at indsætte teksten som et billede i stedet, da JavaScript ikke har de fonts, jeg vil bruge.
+
 <br />
 
 ### Dynamics
