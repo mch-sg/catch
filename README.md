@@ -9,7 +9,21 @@ Pointen med dette spil er at tilpasse og videreudvikle denne skabelon for at gø
 
 <br />
 
+<!-- [GitHub](https://github.com/mch-sg/catch) -->
+
 I dette spil skal du fange de forskellige frugter for at få point. Hvis du fanger nok point, kan du vinde spillet, men hvis du taber for mange point, taber du. I løbet af spillet kan du udføre quests, der giver spilleren bonuspoint. Det er op til spilleren at beslutte, om det er værd at udføre disse quests.
+
+<br />
+
+Jeg vil tilføje:
+1. Quests (missioner), hvor man kan optjene flere point
+2. Bomber, som der dræber spilleren
+3. Startside, så spillet ikke starter med det samme
+4. Retry knap
+5. Lyde (sense-pleasure)
+6. Frugt, der giver dig liv
+
+Nu vil jeg uddybe min grund til, at jeg vil tilføje disse funktioner vha. MDA.
 
 <br />
 <br />
@@ -20,16 +34,14 @@ Mekanik, Dynamik, Æstetik
 Jeg vil vise fra brugeroplevelsen, altså fra Aesthetics til Mechanics.
 
 
-
-
 ### Æstetik
 Med hensyn til æstetik (følelsesmæssig respons) vil jeg bygge videre på mit spil ...
 
 **1. Challenge (obstacle)**
 
-Som en førsteprioritering vil jeg gøre spillet til en udfordring (forhindringsbane), hvis jeg har tid til at udvide spillet, vil jeg tilføje yderligere en sanse-fornøjelse.
+Som en førsteprioritering vil jeg gøre spillet til en udfordring (forhindringsbane), hvis jeg har tid til at udvide spillet, vil jeg yderligere tilføje sense-pleasure.
 
-Jeg vil gerne tilføje 'bomber' eller i det mindste en slags objekt, der tager et liv væk fra spilleren (eller måske dræber spilleren helt). Her kan du også gøre selve smagsvariablen bedre med hensyn til at vise, hvilke der giver specifikke punkter (måske i form af farve). 
+Jeg vil gerne tilføje 'bomber' eller i det mindste en slags objekt, der tager et liv væk fra spilleren (eller måske dræber spilleren helt). Her kan du også gøre selve smagsvariablen bedre med hensyn til at vise, hvilke der giver specifikke punkter (måske i form af farve). Denne bombe vil gøre spillet sværere, og en større udfordring.
 
 Jeg vil skabe quests, der får spilleren til at forsøge at fange visse frugter, og dermed skabe en større udfordring sammen med bomben.
 
@@ -40,10 +52,10 @@ Hvis jeg har tid, vil jeg skabe oplevelseslyde for spilleren, når man vinder en
 
 Derudover skal det visuelle skabe en oplevelse, så du oplever noget visuelt interessant at se på (i forhold til baggrund og hele spillet).
 
-Jeg vil gerne tilføje en startskærm, hvilket ville gøre spillet mere visuelt tiltalende. Jeg ønsker også at gøre challenge til det primære mål, så bomberne og missionerne skal se bedre ud som en prioritet. Derfor ønsker jeg ikke at tilføje en baggrund i selve spillet, da det er svært at bruge en baggrund, der ikke trækker din opmærksomhed væk fra det primære mål, nemlig at være en udfordring.
+Jeg vil gerne tilføje en startskærm, hvilket ville gøre spillet mere visuelt tiltalende. Jeg ønsker også at gøre challenge til det primære mål, så bomberne og missionerne skal se bedre ud som en prioritet. Derfor ønsker jeg *ikke* at tilføje en baggrund i selve spillet, da det er svært at bruge en baggrund, der ikke trækker din opmærksomhed væk fra det primære mål, nemlig at være en udfordring.
 
-
-
+<br />
+<br />
 
 ### Dynamics
 Med hensyn til dynamik (spillerinput) vil jeg bygge videre på mit spil...
@@ -60,7 +72,8 @@ Du skal kunne dø af en bombe, hvis du griber den i kurven.
 
 Når du mister for mange frugter, skal du kunne tabe. Hvis du fanger nok frugter, skal du være i stand til at vinde. På disse skærme skal du være i stand til at prøve igen via. en knap.
 
-
+<br />
+<br />
 
 ### Mechanics
 Med hensyn til mekanik (regler, grundlæggende komponenter, handling) vil jeg bygge videre på mit spil ...
@@ -69,8 +82,8 @@ Det skal være klart for spilleren, at visse frugter giver flere point end andre
 
 Jeg vil oprette quests, så spilleren kan optjene bonuspoint, hvilket giver spilleren mere formål, og spillet bliver mere engagerende.
 
-<br /><br />
-
+<br />
+<br />
 
 ### Implementation
 
@@ -78,16 +91,8 @@ Forklar koden...
 
 
 
-
-<br /><br />
-
-## How it works
-[...]
-
-
-
-
-<br /><br />
+<br />
+<br />
 
 ## Credits
 - https://freesound.org/people/EVRetro/
