@@ -3,19 +3,13 @@ Først laver vi nogle variable til at lave nogle frugter:
  - objekter som vi vil skyde afsted og fange i en turban
 */
 
-// Frugterne
+// Definerer frugterne
 let appelsin;
-let lime;
 let granataeble;
 let tomat;
 let blabaer;
 let bombe;
 let frugter; // Array til alle frugterne
-
-let retry = function() {
-//    window.location.reload(true);
-    spilIgang = true;
-};
 
 // Random p5 function, mellem 2 værdier for quests catch random
 function mellem(min, max) {
@@ -33,12 +27,12 @@ let startImg2;
 let provIgen;
 
 
-// Side quests array (forskellige quests)
+// Quest array til display (forskellige quests)
 let quest = [" appelsiner i streg. ", " granatæbler i streg. ", " tomater i streg. ", " blåbær i streg. "];
 // let quest = ["Grib 3 appelsiner i streg. ", "Grib 6 limes i streg. ", "Grib 9 tomater i streg. ",]; // "Grib 5 appelsiner i streg. ", "Grib 5 limes i streg. ", "Grib 5 tomater i streg. "];
 // Quest resultatet
 let questR = 0; 
-// qquests definerer de forskellige værdier (hvor mange man skal gribe) og (hvilken frugt) sammen med det specifikke array quest
+// Quests definerer de forskellige værdier (hvor mange man skal gribe) og (hvilken frugt) sammen med det specifikke array quest
 let quests = [
     {fruit: "appelsin", catch: mellem(2,5), Pts: 10}, // catch: 3
     {fruit: "granatæblr", catch: mellem(3,6), Pts: 20}, // catch: 6
@@ -46,7 +40,7 @@ let quests = [
     {fruit: "blåbær", catch: mellem(3,9), Pts: 0, Liv: 10}, // catch: 9
 ];
 
-// Variablen der giver spilleren en random quest fra quests arrayet
+// Variablen der giver spilleren en random quest fra quests arrayet (forbindes også med quest arrayet)
 let tilfaeldig = Math.floor(Math.random() * quest.length); 
 
 // En funktion, der laver en random quest på kaldet nyRandom()
@@ -70,7 +64,6 @@ console.log("q l: " + quest.length);
 console.log("qs l: " + quests.length);
 
 
-
 // Øvrige
 let tid = 150;
 let score = 0;
@@ -80,7 +73,7 @@ let spilIgang = false;   //flag
 let vundet = false;
 let tabt = false;
 const col = [255,99,71]; // farven på gameOver teksten
-const grav = 0.12; // tyngdekraften // 0.12 // 0.1
+const grav = 0.12; // tyngdekraften // 0.1
 
 let menu = true;
 
@@ -109,7 +102,7 @@ function setup() {  // kører kun en gang, når programmet startes
     LYD LAVES FREMADRETTET
     */
 
-    // Her laves lyden til spillet. Variablen song er baggrundsmusikken.
+    // Her laves lydene til spillet. Variablen song er baggrundsmusikken.
     song = createAudio('assets/intro-music.wav'); // assets/bg.wav
     song.volume(0.5); 
 
@@ -125,13 +118,13 @@ function setup() {  // kører kun en gang, når programmet startes
     grib = createAudio('assets/i-catch.wav');
     grib.volume(0.5);
 
-    // Her laves lyden, når turbaen ikke griber en frugt
+    // Her laves lyden, når turbaen misser en frugt
     miss = createAudio('assets/i-miss.wav');
     miss.volume(0.5); 
 
 
     /*
-    SPIL LAVES FREMADRETTET
+    FRUGTER LAVES FREMADRETTET
     */
 
     //newspeed = yspeed;
@@ -139,21 +132,21 @@ function setup() {  // kører kun en gang, når programmet startes
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(50, 425, 100, 100, 5); // 670, 100
     // parametrene til Frugt-konstruktøren er (x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv)
-    appelsin = new Frugt(random(25, 650), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0); // 30, 550 // 220,110,0
-    granataeble = new Frugt(random(25, 650), 25, 37, 40, 0, 0, [255, 187, 180], 2, "granatæble", 0);  // 243, 85, 136 // 113,169,90
-    lime = new Frugt(random(25, 650), 25, 25, 30, 0, 0, [118,255,122], 2, "lime", 0); // 30, 530 // 110,200,0
-    tomat = new Frugt(random(25, 650), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); // 30, 510 // 220,0,0
-    blabaer = new Frugt(random(25, 650), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1); // 0,110,220 // 49,77,103
+    appelsin = new Frugt(random(25, 650), 25, 40, 40, 0, 0, [247,192,21], 1, "appelsin", 0);
+    granataeble = new Frugt(random(25, 650), 25, 37, 40, 0, 0, [255, 187, 180], 2, "granatæble", 0);
+    tomat = new Frugt(random(25, 650), 25, 40, 35, 0, 0, [255,99,71], 3, "tomat", 0); 
+    blabaer = new Frugt(random(25, 650), 25, 25, 20, 0, 0, [79,134,247], 0, "blåbær", 1);
     
-    bombe = new Frugt(random(25, 650), 25, 30, 30, 0, 0, [60,60,60], 0, "bombe", 0); // 0,110,220 // 49,77,103
+    bombe = new Frugt(random(25, 650), 25, 30, 30, 0, 0, [60,60,60], 0, "bombe", 0); 
     
+    // Arrayet frugter kalder de forskellige
     frugter = [appelsin, granataeble, tomat, blabaer, bombe];
 
 }
 
 
 function draw() { 
-   background(245); // 245
+   background(245); // Tegner baggrunden
 
     if (spilIgang) {
         flytFrugter(); // flyt alle frugterne
@@ -164,19 +157,17 @@ function draw() {
 
     // Menuen laves inden spillet er i gang
     if(menu) {
-        background(startImg); // 245 (startImg)
-        fill([255,255,255]); // [255,255,255]
-        textSize(65); textFont('Arial');
+        background(startImg); // Tegner baggrundensbilledet af menuen
+        // Følgende tegner "billedet" som er h1 teksten
+        // "Appelsiner I Haven" ved startmenuen
         image(startHead, width/2 - 310 + random(-1,1),height/2 - 50 + random(1),600,95);
+        // Følgende tegner "billedet" som er start teksten
+        // "START SPILLET (ENTER)" ved startmenuen
         image(startEnter, width/2 - 135,height/2 + 90,263,19);
-       // text("Appelsiner i haven",width/2 + random(-0.25,0.25), height/2 + random(0.25));  // width/2 + random(-0.5,0.5), height/2 + random(1)
-        textSize(30);
-        fill([249, 210, 198]);
-        //text("Start spillet (enter)",width/2, height/2 + 100);
-
     }  
 
-    // Hvis spilleren har vundet, skal SpilIgang være false, og baggrundsskærmen skal køre, samt teksten.
+    // Hvis spilleren har vundet, skal SpilIgang være false, 
+    // og baggrundsskærmen skal køre, samt teksten.
     if(vundet) { 
         spilIgang = false;
         background(245); fill(col);
@@ -184,8 +175,9 @@ function draw() {
         text("Du har vundet!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(18);
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
-        image(provIgen, width/2 - 115,height/2 + 70,226,19);
-        //textSize(30); text("Prøv igen (enter)",width/2, height/2 + 80);
+        // Her tegnes "billedet", som er prøv igen teksten
+        // De sidste variabler (226, 19) er størrelsen af billedet
+        image(provIgen, width/2 - 115,height/2 + 70, 226, 19);
 
         // Her skal vi sørge for at lyden afspilles
         winsong.play();
@@ -200,9 +192,11 @@ function draw() {
         text("Din taber!",width/2 + random(-0.5,0.5), height/2 + random(1)); 
         textSize(18);
         text("Score: "+score+"ㅤㅤ Miss: "+missed, width/2, height/2 - 70);
-        image(provIgen, width/2 - 115,height/2 + 70,226,19);
-        //textSize(30); text("Prøv igen (enter)",width/2, height/2 + 80);
+        // Her tegnes "billedet", som er prøv igen teksten
+        // De sidste variabler (226, 19) er størrelsen af billedet
+        image(provIgen, width/2 - 115,height/2 + 70, 226, 19);
 
+        // Her skal vi sørge for at lyden afspilles
         losesong.play();
         song.stop();
     }
@@ -215,16 +209,10 @@ function keyPressed() {
     if (spilIgang == false) {
         if (keyCode === 13) { // 87 = W // 32 = SPACE // 13 = ENTER
             clear();
-            vundet = false;
-            tabt = false;
-            menu = false;
-            losesong.stop();
-            winsong.stop();
+            vundet = false; tabt = false; menu = false;
+            losesong.stop(); winsong.stop();
 
-            tid = 150;
-            score = 0;
-            missed = 0;
-            liv = 50; 
+            tid = 150; score = 0; missed = 0; liv = 50; 
 
             nyRandom();
             setup();
@@ -252,9 +240,8 @@ function display() {
     if (quests[tilfaeldig].Liv >= 1) {
         text("Quest: " + "Grib " + quests[tilfaeldig].catch + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Liv + " liv)", width-170, 600); // width-640, 30 // width/5, 30
     }
-    // text("Quest: " + quest[tilfaeldig] + questR + "/" + quests[tilfaeldig].catch + " (" + quests[tilfaeldig].Pts + " pts.)", width-640, 30);
     
-    //Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
+    // Her skal vi sørge for at frugterne bliver vist, hvis de skal vises
     for (let i = 0; i < frugter.length; i++) {
         frugter[i].tegn();
     }    
@@ -336,8 +323,8 @@ function checkScore() {
                 tabt = true;
             }
 
-            //   console.log("Frugt " + i + ": " + dist(frugter[i].x, frugter[i].y, turban.x, turban.y))
-            if (turban.grebet(frugter[i])) { // (turban.grebet(frugter[i]))
+            //  Hvis turban har grebet en frugt (efter at tjekke quests), så skal scoren op.
+            if (turban.grebet(frugter[i])) { 
                 // frugter[i].smag tilføjer pointene (smag) til scoren (se: frugt.js class Frugt (smag))
                 score += frugter[i].smag;
                 liv += frugter[i].nLiv;
@@ -353,7 +340,8 @@ function checkScore() {
 
 
 /*
-Definerer point ud fra hvor mange frugter man skal gribe
+Definerer hvor mange point man skal få ud fra 
+hvor mange frugter man skal gribe i QUESTS
 */
 
 // Appelsiner (2,5)
@@ -392,49 +380,11 @@ if(quests[3].catch > 6) {
 
 
 
-// når musen holdes nede, skal nr. 0 i arrayet frugter afspille funktionen clickNew fra frugt.js
+// når musen holdes nede, skal nr. 0 i arrayet
+// frugter afspille funktionen clickNew fra frugt.js
 function mouseClicked() {
 
     frugter[tilfaeldig].clickNew(); 
     return;
   }  
 
-//mouseClicked();
-
-
-
-
-
-/*
-OPGAVER
-
- Opgave 1 - Lige nu er der tre frugter i arrayet - lav programmet om, sådan at når man 
-            klikker på skærmen med musen, så spawnes der en ny frugt, der hvor man klikker,
-            med tilfældig x- og y-hastighed. For at lægge den ind i frugter-arrayet skal man
-            bruge   frugter.push(foo)  hvor foo er det objekt, man vil føje til. 
-            Se gerne i "p5 Reference" hvordan, hvis ikke I kan huske det:   
-            https://p5js.org/reference/
-
- Opgave 2 - Lav programmet om så frugterne starter i toppen af skærmen og falder ned derfra, gerne
-            stadigvæk med en lille bue på
-
- Opgave 3 - Lav programmet om så frugterne kan give forskellige pointværdier til score
-
- Opgave 4 - Lav programmet om så nogle af frugterne kan give ekstra liv
-
- Opgave 5 - Lav programmet om så der er en liste af frugttyper, der kan dannes. Her kan det være
-            relevant at bruge javascript objektnotation. Led på nettet efter hvordan det gøres, hvis 
-            ikke I kan huske det
-
- Opgave 6 - Lav programmet om så frugter, der ikke gribes, går ud af spillet. Det betyder at I skal 
-            fjerne dem fra frugter-arrayet. Det gøres med kommandoen frugter.splice() - se på nettet 
-            hvordan, hvis ikke I kan huske det. Sørg for, at der dog altid er mindst een frugt i arrayet.
-            Overvej hvilken konsekvens dette vil have for dynamikken (D) i spillet?       
-
- Opgave 7 - Lav programmet om så der spilles en lyd, når en frugt gribes, og en anden lyd, når en
-            frugt misses. Knyt eventuelt forskellige lyde til forskellige frugttyper.
-
- Opgave 8 - Lav programmet om så der kan være to turbaner på skærmen med to forskellige spillere.
-            Den ene bruger piltasterne, som nu - den anden skal brge WASD til at styre turbanen med.
-
-*/

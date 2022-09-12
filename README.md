@@ -41,7 +41,7 @@ Med hensyn til æstetik (følelsesmæssig respons) vil jeg bygge videre på mit 
 
 Som en førsteprioritering vil jeg gøre spillet til en udfordring (forhindringsbane), hvis jeg har tid til at udvide spillet, vil jeg yderligere tilføje sense-pleasure.
 
-Jeg vil gerne tilføje 'bomber' eller i det mindste en slags objekt, der tager et liv væk fra spilleren (eller måske dræber spilleren helt). Her kan du også gøre selve smagsvariablen bedre med hensyn til at vise, hvilke der giver specifikke punkter (måske i form af farve). Denne bombe vil gøre spillet sværere, og en større udfordring.
+Jeg vil gerne tilføje bomber, der dræber spilleren helt. Hvis man ikke griber bomben, mister man ikke noget liv. Her kan du også gøre selve smagsvariablen bedre med hensyn til at vise, hvilke der giver specifikke punkter (måske i form af farve). Denne bombe vil gøre spillet sværere, og en større udfordring.
 
 Jeg vil skabe quests, der får spilleren til at forsøge at fange visse frugter, og dermed skabe en større udfordring sammen med bomben.
 
@@ -79,14 +79,6 @@ Med hensyn til mekanik (regler, grundlæggende komponenter, handling) vil jeg by
 Det skal være klart for spilleren, at visse frugter giver flere point end andre ved hjælp af farver.
 
 Jeg vil oprette quests, så spilleren kan optjene bonuspoint, hvilket giver spilleren mere formål, og spillet bliver mere engagerende.
-
-<br />
-<br />
-
-### Implementation
-
-Forklar koden...
-
 
 
 <br />

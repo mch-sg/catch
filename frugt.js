@@ -9,13 +9,13 @@ class Frugt {
      * dette objekt ved hjælp af nøgleordet this
      */
     constructor(x, y, bredde, dybde, xspeed, yspeed, farve, smag, navn, nLiv) {
-        this.nLiv = nLiv;
-        this.navn = navn
+        this.nLiv = nLiv; // Giver et liv når grebet
+        this.navn = navn // Definerer navn
         this.smag = smag;  // hvor mange point frugten skal give
         this.x = x;     // x-position
         this.y = y;     // y-position
-        this.bred = bredde; 
-        this.dyb = dybde;
+        this.bred = bredde;  // størrelse x
+        this.dyb = dybde; // størrelse y
         this.xspeed = xspeed;
         if (yspeed < - sqrt((y-15)*2*grav)) { this.yspeed = - sqrt((y-15)*2*grav); } else { this.yspeed = yspeed;} // Opnår højden
         this.col = farve;
