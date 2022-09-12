@@ -27,10 +27,10 @@ class Frugt {
     tegn = function() {
         if (this.tid < 25) { // hvor lang tid de er der
 
-            /*
+            
             if(this.navn == "appelsin") {
                 image(appelsinBillede, this.x, this.y, this.bred, this.dyb);
-            } */
+            } 
 
             fill(this.col);
             ellipse(this.x, this.y, this.bred, this.dyb);
