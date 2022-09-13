@@ -9,7 +9,10 @@ Pointen med dette spil er at tilpasse og videreudvikle denne skabelon for at gø
 
 <br />
 
-<!-- [GitHub](https://github.com/mch-sg/catch) -->
+[GitHub](https://github.com/mch-sg/catch)
+
+[Afprøv spillet her (hvis zip index ikke virker)](https://mch-sg.github.io/catch/)
+
 
 I dette spil skal du fange de forskellige frugter for at få point. Hvis du fanger nok point, kan du vinde spillet, men hvis du taber for mange point, taber du. I løbet af spillet kan du udføre quests, der giver spilleren bonuspoint. Det er op til spilleren at beslutte, om det er værd at udføre disse quests.
 
