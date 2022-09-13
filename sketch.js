@@ -36,7 +36,7 @@ let questR = 0;
 // Quests definerer de forskellige værdier (hvor mange man skal gribe) og (hvilken frugt) sammen med det specifikke array quest
 let quests = [
     {fruit: "appelsin", catch: mellem(2,5), Pts: 10}, // catch: 3
-    {fruit: "granatæblr", catch: mellem(3,6), Pts: 20}, // catch: 6
+    {fruit: "granatæble", catch: mellem(3,6), Pts: 20}, // catch: 6
     {fruit: "tomat", catch: mellem(6,9), Pts: 30}, // catch: 9
     {fruit: "blåbær", catch: mellem(3,9), Pts: 0, Liv: 10}, // catch: 9
 ];
